@@ -4,10 +4,10 @@ import 'package:inzynierka/shared/style/fitstat_colors.dart';
 class FitstatStyles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.green,
         primaryColor: isDarkTheme
             ? const Color.fromARGB(255, 121, 185, 56)
-            : const Color(0xFF84AB5C),
+            : const Color.fromARGB(255, 109, 151, 44),
         backgroundColor: isDarkTheme
             ? FitStatColors.backroundColorDark
             : FitStatColors.backroundColor,
@@ -29,9 +29,11 @@ class FitstatStyles {
             colorScheme: isDarkTheme
                 ? const ColorScheme.dark()
                 : const ColorScheme.light()),
-        appBarTheme: const AppBarTheme(
-          elevation: 0.0,
-        ),
+        appBarTheme: AppBarTheme(
+            elevation: 0.0,
+            backgroundColor: isDarkTheme
+                ? FitStatColors.primaryColor
+                : FitStatColors.primaryColorDark),
         scaffoldBackgroundColor: isDarkTheme
             ? FitStatColors.backroundColorDark
             : FitStatColors.backroundColor,
