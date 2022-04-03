@@ -46,16 +46,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         children: _bottomBArItemList,
       ),
       bottomNavigationBar: MotionTabBar(
-        initialSelectedTab: "Dziś",
+        initialSelectedTab: "Posiłki",
         labels: const [
-          "Dziś",
+          "Posiłki",
           "Szukaj",
           "Moje Wyniki",
         ],
         icons: const [
           Icons.home,
           Icons.search,
-          Icons.people_alt,
+          Icons.person,
         ],
         tabSize: 40,
         tabBarHeight: 55,
