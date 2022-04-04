@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  intl: ^0.17.0
 
 dev_dependencies:
   animate_icons: ^2.0.0
