@@ -24,6 +24,12 @@ class FitstatStyles {
         disabledColor: Colors.grey,
         cardColor: isDarkTheme ? const Color(0xFF151515) : Colors.white,
         canvasColor: isDarkTheme ? Colors.black : Colors.grey[50],
+        selectedRowColor: isDarkTheme
+            ? const Color.fromARGB(255, 121, 185, 56)
+            : const Color.fromARGB(255, 109, 151, 44),
+        unselectedWidgetColor: isDarkTheme ? Colors.grey[500] : Colors.black,
+        bottomAppBarColor:
+            isDarkTheme ? Colors.grey[900] : const Color(0xFFAFAFAF),
         brightness: isDarkTheme ? Brightness.dark : Brightness.light,
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
             colorScheme: isDarkTheme
@@ -57,6 +63,18 @@ class FitstatStyles {
               fontWeight: FontWeight.w600),
           headline3: TextStyle(
               fontSize: 20,
+              color: isDarkTheme
+                  ? FitStatColors.textColor
+                  : FitStatColors.textColorDark,
+              fontWeight: FontWeight.w400),
+          headline4: TextStyle(
+              fontSize: 16,
+              color: isDarkTheme
+                  ? FitStatColors.textColor
+                  : FitStatColors.textColorDark,
+              fontWeight: FontWeight.w400),
+          headline5: TextStyle(
+              fontSize: 13,
               color: isDarkTheme
                   ? FitStatColors.textColor
                   : FitStatColors.textColorDark,

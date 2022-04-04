@@ -15,8 +15,7 @@ import 'package:flutter/material.dart' as _i10;
 import 'package:inzynierka/theme_example.dart' as _i8;
 import 'package:inzynierka/ui/home_screen/home_screen.dart' as _i4;
 import 'package:inzynierka/ui/home_search_screen/search_screen.dart' as _i6;
-import 'package:inzynierka/ui/home_summary_screen.dart/summary_screen.dart'
-    as _i5;
+import 'package:inzynierka/ui/home_summary_screen/summary_screen.dart' as _i5;
 import 'package:inzynierka/ui/home_user_screen.dart/user_screen.dart' as _i7;
 import 'package:inzynierka/ui/login_screen/login_screen.dart' as _i2;
 import 'package:inzynierka/ui/register_screen.dart/register_screen.dart' as _i3;
