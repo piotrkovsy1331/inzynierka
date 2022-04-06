@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:inzynierka/routes/router.gr.dart';
 
 class MealTile extends StatelessWidget {
   const MealTile(
@@ -10,7 +12,7 @@ class MealTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onMealTileTapped,
+      onTap: () => onMealTileTapped(context),
       child: Container(
           padding: const EdgeInsets.fromLTRB(10, 25, 10, 20),
           decoration: BoxDecoration(
@@ -33,7 +35,15 @@ class MealTile extends StatelessWidget {
                         style: Theme.of(context).textTheme.headline2,
                       )),
                   InkWell(
-                      onTap: onAddTapped, child: const Icon(Icons.add_circle))
+                      onTap: () => onAddTapped(context),
+                      child: const SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: Icon(
+                          Icons.add_circle,
+                          size: 30,
+                        ),
+                      ))
                 ],
               ),
               const SizedBox(
@@ -85,7 +95,11 @@ class MealTile extends StatelessWidget {
     );
   }
 
-  void onAddTapped() {}
+  void onAddTapped(BuildContext context) {
+    AutoRouter.of(context).push(AddMealRoute());
+  }
 
-  void onMealTileTapped() {}
+  void onMealTileTapped(BuildContext context) {
+    AutoRouter.of(context).push(MealDetailsRoute());
+  }
 }
