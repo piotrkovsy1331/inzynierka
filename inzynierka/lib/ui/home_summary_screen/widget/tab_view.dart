@@ -56,7 +56,7 @@ class TabView extends StatelessWidget {
                   : FitstatGradient.sunset,
               mealName: 'Podwieczorek'),
           const SizedBox(
-            height: 10,
+            height: 50,
           ),
         ],
       );

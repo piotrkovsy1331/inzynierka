@@ -30,15 +30,32 @@ class _SummaryScreenState extends State<SummaryScreen> {
       length: 4,
       child: Scaffold(
         drawer: const FitstatDrawer(),
-        appBar: AppBar(
-          title: const Text('Twoje Posiłki'),
-        ),
+        appBar: const FitStatAppBar(title: 'Twoje Posiłki'),
         body: Column(
           children: [
             FitstatTabBar(tabs: tabs),
             const Expanded(child: TabView()),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class FitStatAppBar extends StatelessWidget with PreferredSizeWidget {
+  const FitStatAppBar({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+  final String title;
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Text(
+        title,
+        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
       ),
     );
   }

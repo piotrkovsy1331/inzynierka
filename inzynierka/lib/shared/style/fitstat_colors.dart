@@ -4,7 +4,7 @@ class FitStatColors {
   static const primaryColor = Color(0xFF84AB5C);
   static const buttonColor = Color(0xFF00C853);
   static const backroundColor = Color.fromARGB(255, 255, 255, 255);
-  static const textColor = Color.fromARGB(255, 255, 255, 255);
+  static const textColor = Color.fromRGBO(224, 224, 224, 1);
 
   ///Dark Theme Colors
   static const primaryColorDark = Color.fromARGB(255, 109, 151, 44);

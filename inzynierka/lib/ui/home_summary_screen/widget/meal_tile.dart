@@ -12,7 +12,7 @@ class MealTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onMealTileTapped(context),
+      onTap: () => onMealTileTapped(context, gradientColor),
       child: Container(
           padding: const EdgeInsets.fromLTRB(10, 25, 10, 20),
           decoration: BoxDecoration(
@@ -99,7 +99,8 @@ class MealTile extends StatelessWidget {
     AutoRouter.of(context).push(AddMealRoute());
   }
 
-  void onMealTileTapped(BuildContext context) {
-    AutoRouter.of(context).push(MealDetailsRoute());
+  void onMealTileTapped(BuildContext context, List<Color> gradientColor) {
+    AutoRouter.of(context).push(
+        MealDetailsRoute(gradientColor: gradientColor, mealName: mealName));
   }
 }
