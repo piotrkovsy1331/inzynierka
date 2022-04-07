@@ -22,7 +22,7 @@ class FitstatStyles {
         focusColor:
             isDarkTheme ? const Color(0xff0B2512) : const Color(0xffA8DAB5),
         disabledColor: Colors.grey,
-        cardColor: isDarkTheme ? const Color(0xFF151515) : Colors.white,
+        cardColor: isDarkTheme ? Colors.grey[500] : Colors.grey[700],
         canvasColor: isDarkTheme ? Colors.black : Colors.grey[50],
         selectedRowColor: isDarkTheme
             ? const Color.fromARGB(255, 121, 185, 56)
@@ -78,6 +78,12 @@ class FitstatStyles {
               color: isDarkTheme
                   ? FitStatColors.textColor
                   : FitStatColors.textColorDark,
+              fontWeight: FontWeight.w400),
+
+          /// grey text
+          headline6: TextStyle(
+              fontSize: 13,
+              color: isDarkTheme ? Colors.grey[500] : Colors.grey[700],
               fontWeight: FontWeight.w400),
           bodyText1: TextStyle(
               fontSize: 16,

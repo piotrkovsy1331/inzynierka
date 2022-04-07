@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AddMealScreen extends StatefulWidget {
-  AddMealScreen({Key? key}) : super(key: key);
+ const AddMealScreen({Key? key}) : super(key: key);
 
   @override
   State<AddMealScreen> createState() => _AddMealScreenState();

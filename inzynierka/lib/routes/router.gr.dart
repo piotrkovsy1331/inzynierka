@@ -69,10 +69,13 @@ class AppRouter extends _i11.RootStackRouter {
           routeData: routeData, child: _i9.AddMealScreen(key: args.key));
     },
     MealDetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<MealDetailsRouteArgs>(
-          orElse: () => const MealDetailsRouteArgs());
+      final args = routeData.argsAs<MealDetailsRouteArgs>();
       return _i11.AdaptivePage<dynamic>(
-          routeData: routeData, child: _i10.MealDetailsScreen(key: args.key));
+          routeData: routeData,
+          child: _i10.MealDetailsScreen(
+              key: args.key,
+              gradientColor: args.gradientColor,
+              mealName: args.mealName));
     }
   };
 
@@ -180,20 +183,30 @@ class AddMealRouteArgs {
 /// generated route for
 /// [_i10.MealDetailsScreen]
 class MealDetailsRoute extends _i11.PageRouteInfo<MealDetailsRouteArgs> {
-  MealDetailsRoute({_i12.Key? key})
+  MealDetailsRoute(
+      {_i12.Key? key,
+      required List<_i12.Color> gradientColor,
+      required String mealName})
       : super(MealDetailsRoute.name,
-            path: '/meal-details-screen', args: MealDetailsRouteArgs(key: key));
+            path: '/meal-details-screen',
+            args: MealDetailsRouteArgs(
+                key: key, gradientColor: gradientColor, mealName: mealName));
 
   static const String name = 'MealDetailsRoute';
 }
 
 class MealDetailsRouteArgs {
-  const MealDetailsRouteArgs({this.key});
+  const MealDetailsRouteArgs(
+      {this.key, required this.gradientColor, required this.mealName});
 
   final _i12.Key? key;
 
+  final List<_i12.Color> gradientColor;
+
+  final String mealName;
+
   @override
   String toString() {
-    return 'MealDetailsRouteArgs{key: $key}';
+    return 'MealDetailsRouteArgs{key: $key, gradientColor: $gradientColor, mealName: $mealName}';
   }
 }
