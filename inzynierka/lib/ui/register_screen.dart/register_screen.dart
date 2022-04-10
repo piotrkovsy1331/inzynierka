@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../globals/global_widgets/fitstat_textField.dart';
 import '../../logics/hubs/authentication_service.dart';
-import '../../logics/validators/validators.dart';
+import '../../helpers/validators.dart';
 import '../../routes/router.gr.dart';
 import '../../shared/style/fitstat_colors.dart';
 import 'package:auto_route/auto_route.dart';

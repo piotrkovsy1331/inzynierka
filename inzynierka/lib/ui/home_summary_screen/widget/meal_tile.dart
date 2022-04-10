@@ -96,7 +96,7 @@ class MealTile extends StatelessWidget {
   }
 
   void onAddTapped(BuildContext context) {
-    AutoRouter.of(context).push(AddMealRoute());
+    AutoRouter.of(context).push(AddProductRoute());
   }
 
   void onMealTileTapped(BuildContext context, List<Color> gradientColor) {

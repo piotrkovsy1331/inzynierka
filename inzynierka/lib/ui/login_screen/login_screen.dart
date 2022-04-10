@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inzynierka/logics/hubs/authentication_service.dart';
-import 'package:inzynierka/logics/validators/validators.dart';
+import 'package:inzynierka/helpers/validators.dart';
 import 'package:inzynierka/routes/router.gr.dart';
 import 'package:inzynierka/shared/style/fitstat_colors.dart';
 import 'package:provider/provider.dart';

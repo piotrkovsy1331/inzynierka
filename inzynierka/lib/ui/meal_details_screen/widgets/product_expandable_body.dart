@@ -44,7 +44,7 @@ class NoteExpandableBody extends StatelessWidget {
                   height: 65,
                   width: 65,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50.0),
+                    borderRadius: BorderRadius.circular(5.0),
                     child: FadeInImage.memoryNetwork(
                       placeholder: kTransparentImage,
                       image: product.phtotoUrl,
@@ -186,14 +186,14 @@ class NoteExpandableBody extends StatelessWidget {
   BoxDecoration _boxDecoration() {
     return BoxDecoration(
         // gradient: LinearGradient(colors: gradientColor),
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.circular(7),
         border: Border.all(width: 2, color: Colors.grey));
   }
 
   BoxDecoration _boxDecorationGradient() {
     return BoxDecoration(
       gradient: LinearGradient(colors: gradientColor),
-      borderRadius: BorderRadius.circular(50),
+      borderRadius: BorderRadius.circular(10),
     );
   }
 }
