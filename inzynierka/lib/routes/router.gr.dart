@@ -13,7 +13,7 @@
 import 'package:auto_route/auto_route.dart' as _i11;
 import 'package:flutter/material.dart' as _i12;
 import 'package:inzynierka/theme_example.dart' as _i8;
-import 'package:inzynierka/ui/add_meal_screen/add_meal_screen.dart' as _i9;
+import 'package:inzynierka/ui/add_meal_screen/add_product_screen.dart' as _i9;
 import 'package:inzynierka/ui/home_screen/home_screen.dart' as _i4;
 import 'package:inzynierka/ui/home_search_screen/search_screen.dart' as _i6;
 import 'package:inzynierka/ui/home_summary_screen/summary_screen.dart' as _i5;
@@ -62,11 +62,9 @@ class AppRouter extends _i11.RootStackRouter {
       return _i11.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i8.ThemeExampleScreen());
     },
-    AddMealRoute.name: (routeData) {
-      final args = routeData.argsAs<AddMealRouteArgs>(
-          orElse: () => const AddMealRouteArgs());
+    AddProductRoute.name: (routeData) {
       return _i11.AdaptivePage<dynamic>(
-          routeData: routeData, child: _i9.AddMealScreen(key: args.key));
+          routeData: routeData, child: const _i9.AddProductScreen());
     },
     MealDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<MealDetailsRouteArgs>();
@@ -89,7 +87,7 @@ class AppRouter extends _i11.RootStackRouter {
         _i11.RouteConfig(SearchRoute.name, path: '/search-screen'),
         _i11.RouteConfig(UserRoute.name, path: '/user-screen'),
         _i11.RouteConfig(ThemeExampleRoute.name, path: '/theme-example-screen'),
-        _i11.RouteConfig(AddMealRoute.name, path: '/add-meal-screen'),
+        _i11.RouteConfig(AddProductRoute.name, path: '/add-product-screen'),
         _i11.RouteConfig(MealDetailsRoute.name, path: '/meal-details-screen')
       ];
 }
@@ -160,24 +158,12 @@ class ThemeExampleRoute extends _i11.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.AddMealScreen]
-class AddMealRoute extends _i11.PageRouteInfo<AddMealRouteArgs> {
-  AddMealRoute({_i12.Key? key})
-      : super(AddMealRoute.name,
-            path: '/add-meal-screen', args: AddMealRouteArgs(key: key));
+/// [_i9.AddProductScreen]
+class AddProductRoute extends _i11.PageRouteInfo<void> {
+  const AddProductRoute()
+      : super(AddProductRoute.name, path: '/add-product-screen');
 
-  static const String name = 'AddMealRoute';
-}
-
-class AddMealRouteArgs {
-  const AddMealRouteArgs({this.key});
-
-  final _i12.Key? key;
-
-  @override
-  String toString() {
-    return 'AddMealRouteArgs{key: $key}';
-  }
+  static const String name = 'AddProductRoute';
 }
 
 /// generated route for

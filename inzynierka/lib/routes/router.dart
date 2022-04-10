@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:inzynierka/ui/add_meal_screen/add_meal_screen.dart';
+import 'package:inzynierka/ui/add_meal_screen/add_product_screen.dart';
 import 'package:inzynierka/ui/home_screen/home_screen.dart';
 import 'package:inzynierka/ui/home_search_screen/search_screen.dart';
 import 'package:inzynierka/ui/home_summary_screen/summary_screen.dart';
@@ -22,7 +22,7 @@ import '../ui/wrapper.dart';
     AutoRoute(page: SearchScreen),
     AutoRoute(page: UserScreen),
     AutoRoute(page: ThemeExampleScreen),
-    AutoRoute(page: AddMealScreen),
+    AutoRoute(page: AddProductScreen),
     AutoRoute(page: MealDetailsScreen),
   ],
 )

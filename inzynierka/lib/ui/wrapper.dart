@@ -11,7 +11,7 @@ class WrapperScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authenticatedUser = Provider.of<User?>(context);
-    if (authenticatedUser == null) {
+    if (authenticatedUser != null) {
       return const HomeScreen();
     } else {
       return const LoginScreen();

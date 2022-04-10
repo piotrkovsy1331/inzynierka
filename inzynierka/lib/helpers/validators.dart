@@ -12,4 +12,12 @@ class Validators {
 
     return null;
   }
+
+  static String? productNameValidator(String? productName) {
+    if (productName != null && productName.length > 100) {
+      return 'Nazwa jest zbyt długa ';
+    }
+    return null;
+  }
 }
+ 
