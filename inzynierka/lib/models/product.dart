@@ -1,8 +1,8 @@
 import 'package:inzynierka/models/details.dart';
 
 class Product {
-  Product(this.name, this.phtotoUrl, this.productDetails);
+  Product({required this.name, this.photoUrl, required this.productDetails});
   String name;
-  String phtotoUrl;
+  String? photoUrl;
   Details productDetails;
 }

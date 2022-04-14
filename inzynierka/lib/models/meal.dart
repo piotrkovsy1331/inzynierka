@@ -2,9 +2,12 @@ import 'package:inzynierka/models/details.dart';
 import 'package:inzynierka/models/product.dart';
 
 class Meal {
-  Meal(this.mealId, this.mealDetails, this.productList);
+  Meal(
+      {required this.mealTypeName,
+      required this.mealDetails,
+      required this.productList});
 
-  int mealId;
+  String mealTypeName;
   Details mealDetails;
   List<Product> productList;
 }
