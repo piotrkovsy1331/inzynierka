@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:inzynierka/models/enums/meal_type_enum.dart';
 import 'package:inzynierka/ui/home_summary_screen/summary_screen.dart';
 import 'package:inzynierka/ui/meal_details_screen/widgets/product_tile.dart';
 
-import '../../models/enums/meat_type_enum.dart';
 import '../../models/product.dart';
 
 class MealDetailsScreen extends StatefulWidget {
   MealDetailsScreen(
       {Key? key, required this.gradientColor, required this.mealTypeName})
       : super(key: key);
-  final MealTypeName mealTypeName;
+  final MealTypeNameEnum mealTypeName;
   final List<Color> gradientColor;
   final List<Product> productsList = [];
   @override

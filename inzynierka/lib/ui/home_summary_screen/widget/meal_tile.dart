@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:inzynierka/models/enums/meat_type_enum.dart';
+
 import 'package:inzynierka/routes/router.gr.dart';
+
+import '../../../models/enums/meal_type_enum.dart';
 
 class MealTile extends StatelessWidget {
   const MealTile(
       {Key? key, required this.gradientColor, required this.mealTypeName})
       : super(key: key);
   final List<Color> gradientColor;
-  final MealTypeName mealTypeName;
+  final MealTypeNameEnum mealTypeName;
 
   @override
   Widget build(BuildContext context) {

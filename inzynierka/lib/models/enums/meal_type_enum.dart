@@ -1,23 +1,24 @@
 import 'package:flutter/foundation.dart';
 
-enum MealTypeName { breakfast, lunch, dinner, supper, tea }
+enum MealTypeNameEnum { breakfast, lunch, dinner, supper, tea }
 
-extension MealTypeNameExtension on MealTypeName {
+extension MealTypeNameEnumExtension on MealTypeNameEnum {
   String get name => describeEnum(this);
   String get displayName {
     switch (this) {
-      case MealTypeName.breakfast:
+      case MealTypeNameEnum.breakfast:
         return 'śniadanie';
-      case MealTypeName.lunch:
+      case MealTypeNameEnum.lunch:
         return 'luch';
-      case MealTypeName.dinner:
+      case MealTypeNameEnum.dinner:
         return 'obiad';
-      case MealTypeName.supper:
+      case MealTypeNameEnum.supper:
         return 'kolacja';
-      case MealTypeName.tea:
+      case MealTypeNameEnum.tea:
         return 'podwieczorek';
       default:
         return 'Selected Title is null';
     }
   }
 }
+

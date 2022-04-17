@@ -11,7 +11,7 @@ import 'shared/style/fitstat_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
   await HddHub().initHddHub();
   runApp(const MyApp());
 }
@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+  return MultiProvider(
       providers: [
         ChangeNotifierProvider<AppThemeNotifier>(
           create: (_) => AppThemeNotifier(),

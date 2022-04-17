@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inzynierka/models/details.dart';
 import 'package:inzynierka/models/dto/details_dto.dart';
 import 'package:inzynierka/models/dto/product_dto.dart';
 import 'package:inzynierka/models/meal.dart';
 import 'package:json_annotation/json_annotation.dart';
-
 part 'meal_dto.g.dart';
 
 @JsonSerializable()

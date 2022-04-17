@@ -27,7 +27,7 @@ class MealDayDto {
         dateAdded: dateAdded ?? 0,
         addedBy: addedBy ?? "",
         mealList:
-            mealList != null ? mealList!.map((e) => e.toModel()).toList() : []);
+            mealList != null ? mealList.map((e) => e.toModel()).toList() : []);
   }
 
   static MealDayDto fromModel(MealDay mealDay) {
