@@ -52,6 +52,7 @@ class MealDayRepository {
             .doc(mealToMerge.dateAdded.toString())
             .set({mealDayToSend.toJson()}, SetOptions(merge: true));
       } else {
+        ///every ignited mealday document needs to have list of 5 meals
         List<Meal> mealListToInit = [
           Meal(
               mealTypeName: MealTypeNameEnum.breakfast.displayName,
@@ -79,6 +80,8 @@ class MealDayRepository {
                   Details(calories: 0, fat: 0, protein: 0, sugar: 0, weight: 0),
               productList: []),
         ];
+
+        /// Looking for meal in which product shoukd be added
         for (Meal meal in mealListToInit) {
           if (mealTypeName == meal.mealTypeName) {
             meal.mealTypeName = mealTypeName;
@@ -86,10 +89,14 @@ class MealDayRepository {
             meal.productList.add(product);
           }
         }
-        MealDay mealdayToinit = MealDay(
+        MealDayDto mealdayToinit = MealDayDto.fromModel(MealDay(
             dateAdded: dayAdded.millisecondsSinceEpoch,
             addedBy: _firebaseAuth.currentUser!.uid,
-            mealList: mealListToInit);
+            mealList: mealListToInit));
+        log(mealdayToinit.toJson().toString());
+        await _mealDayCollection
+            .doc(dayAdded.millisecondsSinceEpoch.toString())
+            .set(mealdayToinit.toJson());
       }
     } catch (e) {
       log(
