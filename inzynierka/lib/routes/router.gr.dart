@@ -64,8 +64,11 @@ class AppRouter extends _i11.RootStackRouter {
           routeData: routeData, child: const _i8.ThemeExampleScreen());
     },
     AddProductRoute.name: (routeData) {
+      final args = routeData.argsAs<AddProductRouteArgs>();
       return _i11.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i9.AddProductScreen());
+          routeData: routeData,
+          child: _i9.AddProductScreen(
+              key: args.key, mealTypeName: args.mealTypeName));
     },
     MealDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<MealDetailsRouteArgs>();
@@ -160,11 +163,26 @@ class ThemeExampleRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.AddProductScreen]
-class AddProductRoute extends _i11.PageRouteInfo<void> {
-  const AddProductRoute()
-      : super(AddProductRoute.name, path: '/add-product-screen');
+class AddProductRoute extends _i11.PageRouteInfo<AddProductRouteArgs> {
+  AddProductRoute({_i12.Key? key, required _i13.MealTypeNameEnum mealTypeName})
+      : super(AddProductRoute.name,
+            path: '/add-product-screen',
+            args: AddProductRouteArgs(key: key, mealTypeName: mealTypeName));
 
   static const String name = 'AddProductRoute';
+}
+
+class AddProductRouteArgs {
+  const AddProductRouteArgs({this.key, required this.mealTypeName});
+
+  final _i12.Key? key;
+
+  final _i13.MealTypeNameEnum mealTypeName;
+
+  @override
+  String toString() {
+    return 'AddProductRouteArgs{key: $key, mealTypeName: $mealTypeName}';
+  }
 }
 
 /// generated route for

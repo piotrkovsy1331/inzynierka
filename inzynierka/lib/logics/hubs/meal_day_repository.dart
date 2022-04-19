@@ -8,7 +8,6 @@ import 'package:inzynierka/models/enums/meal_type_enum.dart';
 import 'package:inzynierka/models/meal.dart';
 import 'package:inzynierka/models/meal_day.dart';
 import 'package:inzynierka/models/product.dart';
-
 import '../../models/details.dart';
 
 class MealDayRepository {
@@ -26,8 +25,11 @@ class MealDayRepository {
           .doc(dayAdded.millisecondsSinceEpoch.toString())
           .get();
       if (snapshot.exists) {
-        print('Duppa');
-        MealDay mealToMerge = MealDayDto.fromDocument(snapshot).toModel();
+        MealDay mealToMerge =
+            MealDayDto.fromJson(snapshot.data() as Map<String, dynamic>)
+                .toModel();
+
+        log(mealToMerge.toString());
         MealDayDto mealDayToSend = MealDayDto.fromModel(
           MealDay(
               dateAdded: mealToMerge.dateAdded,
@@ -47,10 +49,12 @@ class MealDayRepository {
                 }
               }).toList()),
         );
+        log(mealDayToSend.toJson().toString());
 
+        final jsonToSend = mealDayToSend.toJson();
         _mealDayCollection
             .doc(mealToMerge.dateAdded.toString())
-            .set({mealDayToSend.toJson()}, SetOptions(merge: true));
+            .set(jsonToSend, SetOptions(merge: false));
       } else {
         ///every ignited mealday document needs to have list of 5 meals
         List<Meal> mealListToInit = [
@@ -93,7 +97,6 @@ class MealDayRepository {
             dateAdded: dayAdded.millisecondsSinceEpoch,
             addedBy: _firebaseAuth.currentUser!.uid,
             mealList: mealListToInit));
-        log(mealdayToinit.toJson().toString());
         await _mealDayCollection
             .doc(dayAdded.millisecondsSinceEpoch.toString())
             .set(mealdayToinit.toJson());
@@ -105,6 +108,13 @@ class MealDayRepository {
     }
   }
 
+
+     
+// Future<MealDay>getMEalDay() async{
+
+
+
+// }
   Details sumMealDetails(Meal meal, Product product, String mealTypeName) {
     if (meal.mealTypeName == mealTypeName) {
       return Details(

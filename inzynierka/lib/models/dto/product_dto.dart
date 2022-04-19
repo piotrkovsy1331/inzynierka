@@ -1,27 +1,36 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inzynierka/models/details.dart';
 import 'package:inzynierka/models/product.dart';
-import 'package:json_annotation/json_annotation.dart';
-
 import 'details_dto.dart';
 
-part 'product_dto.g.dart';
 
-@JsonSerializable()
 class ProductDto {
+  String? name;
+  String? photoUrl;
+  DetailsDto? productDetails;
   ProductDto({
     required this.name,
     required this.photoUrl,
     required this.productDetails,
   });
-  String? name;
-  String? photoUrl;
-  DetailsDto? productDetails;
 
-  factory ProductDto.fromJson(Map<String, dynamic> json) =>
-      _$ProductDtoFromJson(json);
+  ProductDto.fromJson(Map<String, dynamic> json)
+      : name = json['name'] as String?,
+        photoUrl = json['photoUrl'] as String?,
+        productDetails = json['productDetails'] == null
+            ? null
+            : DetailsDto.fromJson(
+                json['productDetails'] as Map<String, dynamic>);
 
-  Map<String, dynamic> toJson() => _$ProductDtoToJson(this);
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic>? productDetails =
+        this.productDetails != null ? this.productDetails!.toJson() : null;
+    return {
+      'name': name,
+      'photoUrl': photoUrl,
+      'productDetails': productDetails,
+    };
+  }
 
   Product toModel() {
     return Product(
