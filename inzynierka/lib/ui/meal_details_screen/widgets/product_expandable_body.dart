@@ -47,7 +47,7 @@ class NoteExpandableBody extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5.0),
                     child: FadeInImage.memoryNetwork(
                       placeholder: kTransparentImage,
-                      image: product.phtotoUrl,
+                      image: product.photoUrl!,
                       fit: BoxFit.cover,
                     ),
                   ),

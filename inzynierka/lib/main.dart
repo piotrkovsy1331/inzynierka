@@ -1,17 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:inzynierka/logics/hubs/authentication_service.dart';
-
 import 'package:inzynierka/logics/hubs/hdd_hub.dart';
 import 'package:inzynierka/logics/notifiers/app_theme_notifier.dart';
 import 'package:inzynierka/routes/router.gr.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'shared/style/fitstat_theme.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
   await HddHub().initHddHub();
   runApp(const MyApp());
 }
@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+  return MultiProvider(
       providers: [
         ChangeNotifierProvider<AppThemeNotifier>(
           create: (_) => AppThemeNotifier(),

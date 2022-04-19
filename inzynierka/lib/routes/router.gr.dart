@@ -12,6 +12,7 @@
 
 import 'package:auto_route/auto_route.dart' as _i11;
 import 'package:flutter/material.dart' as _i12;
+import 'package:inzynierka/models/enums/meal_type_enum.dart' as _i13;
 import 'package:inzynierka/theme_example.dart' as _i8;
 import 'package:inzynierka/ui/add_meal_screen/add_product_screen.dart' as _i9;
 import 'package:inzynierka/ui/home_screen/home_screen.dart' as _i4;
@@ -73,7 +74,7 @@ class AppRouter extends _i11.RootStackRouter {
           child: _i10.MealDetailsScreen(
               key: args.key,
               gradientColor: args.gradientColor,
-              mealName: args.mealName));
+              mealTypeName: args.mealTypeName));
     }
   };
 
@@ -172,27 +173,29 @@ class MealDetailsRoute extends _i11.PageRouteInfo<MealDetailsRouteArgs> {
   MealDetailsRoute(
       {_i12.Key? key,
       required List<_i12.Color> gradientColor,
-      required String mealName})
+      required _i13.MealTypeNameEnum mealTypeName})
       : super(MealDetailsRoute.name,
             path: '/meal-details-screen',
             args: MealDetailsRouteArgs(
-                key: key, gradientColor: gradientColor, mealName: mealName));
+                key: key,
+                gradientColor: gradientColor,
+                mealTypeName: mealTypeName));
 
   static const String name = 'MealDetailsRoute';
 }
 
 class MealDetailsRouteArgs {
   const MealDetailsRouteArgs(
-      {this.key, required this.gradientColor, required this.mealName});
+      {this.key, required this.gradientColor, required this.mealTypeName});
 
   final _i12.Key? key;
 
   final List<_i12.Color> gradientColor;
 
-  final String mealName;
+  final _i13.MealTypeNameEnum mealTypeName;
 
   @override
   String toString() {
-    return 'MealDetailsRouteArgs{key: $key, gradientColor: $gradientColor, mealName: $mealName}';
+    return 'MealDetailsRouteArgs{key: $key, gradientColor: $gradientColor, mealTypeName: $mealTypeName}';
   }
 }

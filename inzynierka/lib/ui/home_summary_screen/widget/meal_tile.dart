@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+
 import 'package:inzynierka/routes/router.gr.dart';
+
+import '../../../models/enums/meal_type_enum.dart';
 
 class MealTile extends StatelessWidget {
   const MealTile(
-      {Key? key, required this.gradientColor, required this.mealName})
+      {Key? key, required this.gradientColor, required this.mealTypeName})
       : super(key: key);
   final List<Color> gradientColor;
-  final String mealName;
+  final MealTypeNameEnum mealTypeName;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class MealTile extends StatelessWidget {
                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
-                        mealName,
+                        mealTypeName.displayName,
                         style: Theme.of(context).textTheme.headline2,
                       )),
                   InkWell(
@@ -96,11 +99,11 @@ class MealTile extends StatelessWidget {
   }
 
   void onAddTapped(BuildContext context) {
-    AutoRouter.of(context).push(AddProductRoute());
+    AutoRouter.of(context).push(const AddProductRoute());
   }
 
   void onMealTileTapped(BuildContext context, List<Color> gradientColor) {
-    AutoRouter.of(context).push(
-        MealDetailsRoute(gradientColor: gradientColor, mealName: mealName));
+    AutoRouter.of(context).push(MealDetailsRoute(
+        gradientColor: gradientColor, mealTypeName: mealTypeName));
   }
 }

@@ -20,7 +20,7 @@ class ProductDescription extends StatelessWidget {
         children: [
           ProductText(
             property: 'kcal :',
-            value: product.kcal.toString(),
+            value: product.productDetails.calories.toString(),
           ),
           if (!isCollapsed) ...[
             const SizedBox(
@@ -36,7 +36,7 @@ class ProductDescription extends StatelessWidget {
             ),
             ProductText(
               property: 'białko :',
-              value: product.protein.toString(),
+              value: product.productDetails.protein.toString(),
             ),
             const SizedBox(
               height: 5,
@@ -51,7 +51,7 @@ class ProductDescription extends StatelessWidget {
             ),
             ProductText(
               property: 'tłuszcz :',
-              value: product.fat.toString(),
+              value: product.productDetails.fat.toString(),
             ),
             const SizedBox(
               height: 5,
@@ -66,7 +66,7 @@ class ProductDescription extends StatelessWidget {
             ),
             ProductText(
               property: 'cukier :',
-              value: product.sugar.toString(),
+              value: product.productDetails.sugar.toString(),
             ),
             const SizedBox(
               height: 5,
@@ -81,7 +81,7 @@ class ProductDescription extends StatelessWidget {
             ),
             ProductText(
               property: 'gramy : ',
-              value: product.weight.toString(),
+              value: product.productDetails.weight.toString(),
             ),
             const SizedBox(
               height: 5,

@@ -1,5 +1,10 @@
 class Details {
-  Details(this.calories, this.fat, this.protein, this.sugar, this.weight);
+  Details(
+      {required this.calories,
+      required this.fat,
+      required this.protein,
+      required this.sugar,
+      required this.weight});
 
   int weight;
   int calories;

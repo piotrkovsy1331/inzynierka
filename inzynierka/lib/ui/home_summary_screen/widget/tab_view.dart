@@ -5,6 +5,8 @@ import 'package:inzynierka/shared/style/fitstat_gradient.dart';
 import 'package:inzynierka/ui/home_summary_screen/widget/meal_tile.dart';
 import 'package:provider/provider.dart';
 
+import '../../../models/enums/meal_type_enum.dart';
+
 class TabView extends StatelessWidget {
   const TabView({Key? key}) : super(key: key);
 
@@ -20,7 +22,7 @@ class TabView extends StatelessWidget {
               gradientColor: appTheme.darkTheme
                   ? FitstatGradient.fireDark
                   : FitstatGradient.fire,
-              mealName: 'Śniadanie'),
+              mealTypeName: MealTypeNameEnum.breakfast),
           const SizedBox(
             height: 10,
           ),
@@ -28,7 +30,7 @@ class TabView extends StatelessWidget {
             gradientColor: appTheme.darkTheme
                 ? FitstatGradient.mangoDark
                 : FitstatGradient.mango,
-            mealName: 'Luch',
+            mealTypeName: MealTypeNameEnum.lunch,
           ),
           const SizedBox(
             height: 10,
@@ -37,24 +39,26 @@ class TabView extends StatelessWidget {
             gradientColor: appTheme.darkTheme
                 ? FitstatGradient.seaDark
                 : FitstatGradient.sea,
-            mealName: 'Obiad',
+            mealTypeName: MealTypeNameEnum.dinner,
           ),
           const SizedBox(
             height: 10,
           ),
           MealTile(
-              gradientColor: appTheme.darkTheme
-                  ? FitstatGradient.skyDark
-                  : FitstatGradient.sky,
-              mealName: 'Kolacja'),
+            gradientColor: appTheme.darkTheme
+                ? FitstatGradient.skyDark
+                : FitstatGradient.sky,
+            mealTypeName: MealTypeNameEnum.supper,
+          ),
           const SizedBox(
             height: 10,
           ),
           MealTile(
-              gradientColor: appTheme.darkTheme
-                  ? FitstatGradient.sunsetDark
-                  : FitstatGradient.sunset,
-              mealName: 'Podwieczorek'),
+            gradientColor: appTheme.darkTheme
+                ? FitstatGradient.sunsetDark
+                : FitstatGradient.sunset,
+            mealTypeName: MealTypeNameEnum.tea,
+          ),
           const SizedBox(
             height: 50,
           ),
