@@ -1,13 +1,6 @@
-import 'dart:convert';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inzynierka/models/dto/meal_dto.dart';
 import 'package:inzynierka/models/meal_day.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'meal_day_dto.g.dart';
-
-@JsonSerializable()
 class MealDayDto {
   MealDayDto(
       {required this.dateAdded,
@@ -17,17 +10,30 @@ class MealDayDto {
   String? addedBy;
   List<MealDto> mealList;
 
-  factory MealDayDto.fromJson(Map<String, dynamic> json) =>
-      _$MealDayDtoFromJson(json);
+  MealDayDto.fromJson(Map<String, dynamic> json)
+      : dateAdded = json['dateAdded'] as int?,
+        addedBy = json['addedBy'] as String?,
+        mealList = json['mealList'] == null
+            ? []
+            : (json['mealList'] as List<dynamic>)
+                .map((e) => MealDto.fromJson(e as Map<String, dynamic>))
+                .toList();
 
-  Map<String, dynamic> toJson() => _$MealDayDtoToJson(this);
+  Map<String, dynamic> toJson() {
+    List<Map<String, dynamic>> mealList =
+        this.mealList.map((e) => e.toJson()).toList();
+    return {
+      'dateAdded': dateAdded,
+      'addedBy': addedBy,
+      'mealList': mealList,
+    };
+  }
 
   MealDay toModel() {
     return MealDay(
         dateAdded: dateAdded ?? 0,
         addedBy: addedBy ?? "",
-        mealList:
-            mealList != null ? mealList.map((e) => e.toModel()).toList() : []);
+        mealList: mealList.map((e) => e.toModel()).toList());
   }
 
   static MealDayDto fromModel(MealDay mealDay) {
@@ -39,13 +45,6 @@ class MealDayDto {
                 .map<MealDto>((e) => MealDto.fromModel(e))
                 .toList()
             : []);
-  }
-
-  static MealDayDto fromDocument(DocumentSnapshot doc) {
-    return MealDayDto(
-        dateAdded: doc['dateAdded'],
-        addedBy: doc['addedBy'],
-        mealList: listFromJson(jsonDecode(doc['mealList'])));
   }
 
   static List<MealDto> listFromJson(Iterable iterable) {

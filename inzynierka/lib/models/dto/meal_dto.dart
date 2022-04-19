@@ -4,10 +4,7 @@ import 'package:inzynierka/models/details.dart';
 import 'package:inzynierka/models/dto/details_dto.dart';
 import 'package:inzynierka/models/dto/product_dto.dart';
 import 'package:inzynierka/models/meal.dart';
-import 'package:json_annotation/json_annotation.dart';
-part 'meal_dto.g.dart';
 
-@JsonSerializable()
 class MealDto {
   MealDto(
       {required this.mealTypeName,
@@ -18,10 +15,29 @@ class MealDto {
   DetailsDto? mealDetails;
   List<ProductDto>? productList;
 
-  factory MealDto.fromJson(Map<String, dynamic> json) =>
-      _$MealDtoFromJson(json);
+  MealDto.fromJson(Map<String, dynamic> json)
+      : mealTypeName = json['mealTypeName'] as String?,
+        mealDetails = json['mealDetails'] == null
+            ? null
+            : DetailsDto.fromJson(json['mealDetails'] as Map<String, dynamic>),
+        productList = json['productList'] == null
+            ? []
+            : (json['productList'] as List<dynamic>)
+                .map((e) => ProductDto.fromJson(e as Map<String, dynamic>))
+                .toList();
 
-  Map<String, dynamic> toJson() => _$MealDtoToJson(this);
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic>? mealDetails =
+        this.mealDetails != null ? this.mealDetails!.toJson() : null;
+    List<Map<String, dynamic>>? productList = this.productList != null
+        ? this.productList!.map((e) => e.toJson()).toList()
+        : [];
+    return {
+      'mealTypeName': mealTypeName,
+      'mealDetails': mealDetails,
+      'productList': productList,
+    };
+  }
 
   Meal toModel() {
     return Meal(

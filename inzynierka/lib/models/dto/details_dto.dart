@@ -1,10 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inzynierka/models/details.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'details_dto.g.dart';
-
-@JsonSerializable()
 class DetailsDto {
   DetailsDto(
       {required this.calories,
@@ -19,13 +15,20 @@ class DetailsDto {
   int? fat;
   int? sugar;
 
-  /// Connect the generated [_$PersonFromJson] function to the `fromJson`
-  /// factory.
-  factory DetailsDto.fromJson(Map<String, dynamic> json) =>
-      _$DetailsDtoFromJson(json);
+  DetailsDto.fromJson(Map<String, dynamic> json)
+      : weight = json['weight'] as int?,
+        calories = json['calories'] as int?,
+        protein = json['protein'] as int?,
+        fat = json['fat'] as int?,
+        sugar = json['sugar'] as int?;
 
-  /// Connect the generated [_$PersonToJson] function to the `toJson` method.
-  Map<String, dynamic> toJson() => _$DetailsDtoToJson(this);
+  Map<String, dynamic> toJson() => {
+        'weight': weight,
+        'calories': calories,
+        'protein': calories,
+        'fat': fat,
+        'sugar': sugar,
+      };
 
   Details toModel() {
     return Details(

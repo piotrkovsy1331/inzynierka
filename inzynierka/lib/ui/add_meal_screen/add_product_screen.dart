@@ -10,7 +10,9 @@ import 'package:jiffy/jiffy.dart';
 import 'widget/fitstat_value_slider.dart';
 
 class AddProductScreen extends StatefulWidget {
-  const AddProductScreen({Key? key}) : super(key: key);
+  const AddProductScreen({Key? key, required this.mealTypeName})
+      : super(key: key);
+  final MealTypeNameEnum mealTypeName;
 
   @override
   State<AddProductScreen> createState() => _AddProductScreenState();
@@ -187,7 +189,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
     }
 
     MealDayRepository().addProduct(
-        MealTypeNameEnum.breakfast.displayName,
+     widget.mealTypeName.displayName,
         Product(
             name: _productNameController.text,
             productDetails: Details(
