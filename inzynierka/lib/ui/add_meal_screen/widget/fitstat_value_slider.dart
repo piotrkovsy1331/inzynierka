@@ -15,7 +15,7 @@ class FitstatValueSlider extends StatelessWidget {
   final String hintText;
   final String unit;
   final double maxValue;
-  final bool validated;
+  final bool? validated;
   final void Function(double) onValueChange;
 
   @override
@@ -23,7 +23,7 @@ class FitstatValueSlider extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        decoration: validated
+        decoration: (validated != null && validated == false)
             ? BoxDecoration(
                 border:
                     Border.all(color: Theme.of(context).errorColor, width: 2),
