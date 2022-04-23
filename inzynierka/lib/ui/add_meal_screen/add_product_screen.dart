@@ -28,11 +28,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
   double sugarValue = 0;
   double weightValue = 0;
 
-  bool caloriesValidated = false;
-  bool proteinValidated = false;
-  bool fatValidated = false;
-  bool sugarValidated = false;
-  bool weightValidated = false;
+  bool? caloriesValidated;
+  bool? proteinValidated;
+  bool? fatValidated;
+  bool? sugarValidated;
+  bool? weightValidated;
 
   @override
   Widget build(BuildContext context) {
@@ -161,35 +161,78 @@ class _AddProductScreenState extends State<AddProductScreen> {
     );
   }
 
-  void onSubmitPressed() {
+  bool validataStiders() {
     if (caloriesValue > 1) {
       setState(() {
         caloriesValidated = true;
+      });
+    } else {
+      setState(() {
+        caloriesValidated = false;
       });
     }
     if (proteinValue > 1) {
       setState(() {
         proteinValidated = true;
       });
+    } else {
+      setState(() {
+        proteinValidated = false;
+      });
     }
     if (fatValue > 1) {
       setState(() {
         fatValidated = true;
+      });
+    } else {
+      setState(() {
+        fatValidated = false;
       });
     }
     if (sugarValue > 1) {
       setState(() {
         sugarValidated = true;
       });
+    } else {
+      setState(() {
+        sugarValidated = false;
+      });
     }
     if (weightValue > 1) {
       setState(() {
         weightValidated = true;
       });
+    } else {
+      setState(() {
+        weightValidated = false;
+      });
     }
+    if ((caloriesValidated == true && caloriesValidated != null) &&
+        (proteinValidated == true && proteinValidated != null) &&
+        (fatValidated == true && fatValidated != null) &&
+        (sugarValidated == true && sugarValidated != null) &&
+        (weightValidated == true && weightValidated != null)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-    MealDayRepository().addProduct(
-     widget.mealTypeName.displayName,
+  void resetForm() {
+    caloriesValue = 0;
+    proteinValue = 0;
+    fatValue = 0;
+    sugarValue = 0;
+    weightValue = 0;
+  }
+
+  void onSubmitPressed() {
+    bool _passed1 = _addProductFormKey.currentState!.validate();
+    bool _passed2 = validataStiders();
+
+    if (_passed1 && _passed2) {
+      MealDayRepository().addProduct(
+        widget.mealTypeName.displayName,
         Product(
             name: _productNameController.text,
             productDetails: Details(
@@ -198,6 +241,14 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 protein: proteinValue.floor(),
                 sugar: sugarValue.floor(),
                 weight: weightValue.floor())),
-        Jiffy().startOf(Units.DAY).dateTime);
+        Jiffy().startOf(Units.DAY).dateTime,
+      );
+      _addProductFormKey.currentState!.reset();
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Produkt został dodany ')));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Proszę uzupełnić wszystkie powysze wartości ')));
+    }
   }
 }
