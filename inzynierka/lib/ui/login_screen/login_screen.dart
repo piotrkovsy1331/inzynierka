@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:inzynierka/logics/hubs/authentication_service.dart';
 import 'package:inzynierka/helpers/validators.dart';
@@ -125,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Provider.of<AuthenticationService>(context, listen: false)
             .signIn(login.text, password.text);
       } on FirebaseAuthException catch (e) {
-        print(e);
+        log(e.toString());
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Nie udało się zalogować ')));
       } finally {

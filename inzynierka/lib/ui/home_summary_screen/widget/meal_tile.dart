@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:inzynierka/models/meal.dart';
 import 'package:auto_route/auto_route.dart';
-
+import 'package:inzynierka/models/product.dart';
 import 'package:inzynierka/routes/router.gr.dart';
 
 import '../../../models/enums/meal_type_enum.dart';
 
 class MealTile extends StatelessWidget {
-  const MealTile(
-      {Key? key, required this.gradientColor, required this.mealTypeName})
-      : super(key: key);
+  const MealTile({
+    Key? key,
+    required this.gradientColor,
+    required this.mealTypeName,
+    required this.meal,
+    required this.date,
+  }) : super(key: key);
   final List<Color> gradientColor;
   final MealTypeNameEnum mealTypeName;
+  final Meal meal;
+  final DateTime date;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onMealTileTapped(context, gradientColor),
+      onTap: () => onMealTileTapped(
+        context,
+        gradientColor,
+        mealTypeName,
+        meal.productList,
+      ),
       child: Container(
           padding: const EdgeInsets.fromLTRB(10, 25, 10, 20),
           decoration: BoxDecoration(
@@ -38,7 +50,7 @@ class MealTile extends StatelessWidget {
                         style: Theme.of(context).textTheme.headline2,
                       )),
                   InkWell(
-                      onTap: () => onAddTapped(context),
+                      onTap: () => onAddTapped(context, mealTypeName, date),
                       child: const SizedBox(
                         height: 50,
                         width: 50,
@@ -61,34 +73,34 @@ class MealTile extends StatelessWidget {
                           style: Theme.of(context).textTheme.headline5,
                           children: [
                         TextSpan(
-                            text: '100',
+                            text: meal.mealDetails.calories.toString(),
                             style: Theme.of(context).textTheme.bodyText2)
                       ])),
                   RichText(
                       text: TextSpan(
-                          text: 'Kcal: ',
+                          text: 'Białko: ',
                           style: Theme.of(context).textTheme.headline5,
                           children: [
                         TextSpan(
-                            text: '100',
+                            text: meal.mealDetails.protein.toString(),
                             style: Theme.of(context).textTheme.bodyText2)
                       ])),
                   RichText(
                       text: TextSpan(
-                          text: 'Kcal: ',
+                          text: 'Tłuszcz: ',
                           style: Theme.of(context).textTheme.headline5,
                           children: [
                         TextSpan(
-                            text: '100',
+                            text: meal.mealDetails.fat.toString(),
                             style: Theme.of(context).textTheme.bodyText2)
                       ])),
                   RichText(
                       text: TextSpan(
-                          text: 'Kcal: ',
+                          text: 'Cukry: ',
                           style: Theme.of(context).textTheme.headline5,
                           children: [
                         TextSpan(
-                            text: '100',
+                            text: meal.mealDetails.sugar.toString(),
                             style: Theme.of(context).textTheme.bodyText2)
                       ])),
                 ],
@@ -98,12 +110,17 @@ class MealTile extends StatelessWidget {
     );
   }
 
-  void onAddTapped(BuildContext context) {
-    AutoRouter.of(context).push(AddProductRoute(mealTypeName: mealTypeName));
+  void onAddTapped(
+      BuildContext context, MealTypeNameEnum mealTypeName, DateTime date) {
+    AutoRouter.of(context)
+        .push(AddProductRoute(mealTypeName: mealTypeName, date: date));
   }
 
-  void onMealTileTapped(BuildContext context, List<Color> gradientColor) {
+  void onMealTileTapped(BuildContext context, List<Color> gradientColor,
+      MealTypeNameEnum mealTypeName, List<Product> productList) {
     AutoRouter.of(context).push(MealDetailsRoute(
-        gradientColor: gradientColor, mealTypeName: mealTypeName));
+        gradientColor: gradientColor,
+        mealTypeName: mealTypeName,
+        productsList: productList));
   }
 }

@@ -5,14 +5,15 @@ import 'package:inzynierka/models/details.dart';
 import 'package:inzynierka/models/enums/meal_type_enum.dart';
 import 'package:inzynierka/models/product.dart';
 import 'package:inzynierka/ui/home_summary_screen/summary_screen.dart';
-import 'package:jiffy/jiffy.dart';
 
 import 'widget/fitstat_value_slider.dart';
 
 class AddProductScreen extends StatefulWidget {
-  const AddProductScreen({Key? key, required this.mealTypeName})
+  const AddProductScreen(
+      {Key? key, required this.mealTypeName, required this.date})
       : super(key: key);
   final MealTypeNameEnum mealTypeName;
+  final DateTime date;
 
   @override
   State<AddProductScreen> createState() => _AddProductScreenState();
@@ -241,7 +242,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 protein: proteinValue.floor(),
                 sugar: sugarValue.floor(),
                 weight: weightValue.floor())),
-        Jiffy().startOf(Units.DAY).dateTime,
+        widget.date,
       );
       _addProductFormKey.currentState!.reset();
       ScaffoldMessenger.of(context).showSnackBar(

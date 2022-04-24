@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:inzynierka/globals/enums/time_range_enum.dart';
 import 'package:inzynierka/globals/global_widgets/fitstat_drawer.dart';
 import 'package:inzynierka/globals/global_widgets/fitstat_tabbar.dart';
 
@@ -12,17 +14,20 @@ class SummaryScreen extends StatefulWidget {
 }
 
 class _SummaryScreenState extends State<SummaryScreen> {
-  @override
-  void initState() {
-    super.initState();
-    //TODO in initstate download stuff from database
-  }
-
-  List<Widget> tabs = const [
-    Tab(child: Text('Dziś')),
-    Tab(child: Text('Wczoraj ')),
-    Tab(child: Text('Przedwczoraj')),
-    Tab(child: Text('ZaPrzedwczoraj')),
+  List<Widget> tabs = [
+    const Tab(child: Text('dziś')),
+    Tab(
+        child: Text(DateFormat('EEEE', 'pl')
+            .format(TimeRangeEnum.yesterday.returnTime)
+            .toString())),
+    Tab(
+        child: Text(DateFormat('EEEE', 'pl')
+            .format(TimeRangeEnum.dayBeforeYestrday.returnTime)
+            .toString())),
+    Tab(
+        child: Text(DateFormat('EEEE', 'pl')
+            .format(TimeRangeEnum.treeDaysEarlier.returnTime)
+            .toString())),
   ];
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,13 @@ class _SummaryScreenState extends State<SummaryScreen> {
         body: Column(
           children: [
             FitstatTabBar(tabs: tabs),
-            const Expanded(child: TabView()),
+            Expanded(
+                child: TabBarView(children: [
+              TabView(date: TimeRangeEnum.today.returnTime),
+              TabView(date: TimeRangeEnum.yesterday.returnTime),
+              TabView(date: TimeRangeEnum.dayBeforeYestrday.returnTime),
+              TabView(date: TimeRangeEnum.treeDaysEarlier.returnTime),
+            ])),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:inzynierka/logics/hubs/authentication_service.dart';
 import 'package:inzynierka/logics/hubs/hdd_hub.dart';
 import 'package:inzynierka/logics/notifiers/app_theme_notifier.dart';
@@ -35,7 +36,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-  return MultiProvider(
+    initializeDateFormatting('pl');
+    return MultiProvider(
       providers: [
         ChangeNotifierProvider<AppThemeNotifier>(
           create: (_) => AppThemeNotifier(),

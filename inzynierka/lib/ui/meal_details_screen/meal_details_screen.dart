@@ -6,12 +6,15 @@ import 'package:inzynierka/ui/meal_details_screen/widgets/product_tile.dart';
 import '../../models/product.dart';
 
 class MealDetailsScreen extends StatefulWidget {
-  MealDetailsScreen(
-      {Key? key, required this.gradientColor, required this.mealTypeName})
+  const MealDetailsScreen(
+      {Key? key,
+      required this.gradientColor,
+      required this.mealTypeName,
+      required this.productsList})
       : super(key: key);
   final MealTypeNameEnum mealTypeName;
   final List<Color> gradientColor;
-  final List<Product> productsList = [];
+  final List<Product> productsList;
   @override
   State<MealDetailsScreen> createState() => _MealDetailsScreenState();
 }

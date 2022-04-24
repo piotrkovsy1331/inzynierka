@@ -5,8 +5,8 @@ class FitstatStyles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
         errorColor: isDarkTheme
-            ? Color.fromARGB(255, 180, 69, 86)
-            : Color.fromARGB(255, 227, 72, 96),
+            ? const Color.fromARGB(255, 180, 69, 86)
+            : const Color.fromARGB(255, 227, 72, 96),
         primarySwatch: Colors.green,
         primaryColor: isDarkTheme
             ? const Color.fromARGB(255, 121, 185, 56)

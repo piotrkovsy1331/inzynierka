@@ -47,7 +47,8 @@ class NoteExpandableBody extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5.0),
                     child: FadeInImage.memoryNetwork(
                       placeholder: kTransparentImage,
-                      image: product.photoUrl!,
+                      image: product.photoUrl ??
+                          "https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png",
                       fit: BoxFit.cover,
                     ),
                   ),

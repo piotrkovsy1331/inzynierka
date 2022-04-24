@@ -13,6 +13,7 @@
 import 'package:auto_route/auto_route.dart' as _i11;
 import 'package:flutter/material.dart' as _i12;
 import 'package:inzynierka/models/enums/meal_type_enum.dart' as _i13;
+import 'package:inzynierka/models/product.dart' as _i14;
 import 'package:inzynierka/theme_example.dart' as _i8;
 import 'package:inzynierka/ui/add_meal_screen/add_product_screen.dart' as _i9;
 import 'package:inzynierka/ui/home_screen/home_screen.dart' as _i4;
@@ -68,7 +69,7 @@ class AppRouter extends _i11.RootStackRouter {
       return _i11.AdaptivePage<dynamic>(
           routeData: routeData,
           child: _i9.AddProductScreen(
-              key: args.key, mealTypeName: args.mealTypeName));
+              key: args.key, mealTypeName: args.mealTypeName, date: args.date));
     },
     MealDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<MealDetailsRouteArgs>();
@@ -77,7 +78,8 @@ class AppRouter extends _i11.RootStackRouter {
           child: _i10.MealDetailsScreen(
               key: args.key,
               gradientColor: args.gradientColor,
-              mealTypeName: args.mealTypeName));
+              mealTypeName: args.mealTypeName,
+              productsList: args.productsList));
     }
   };
 
@@ -164,24 +166,31 @@ class ThemeExampleRoute extends _i11.PageRouteInfo<void> {
 /// generated route for
 /// [_i9.AddProductScreen]
 class AddProductRoute extends _i11.PageRouteInfo<AddProductRouteArgs> {
-  AddProductRoute({_i12.Key? key, required _i13.MealTypeNameEnum mealTypeName})
+  AddProductRoute(
+      {_i12.Key? key,
+      required _i13.MealTypeNameEnum mealTypeName,
+      required DateTime date})
       : super(AddProductRoute.name,
             path: '/add-product-screen',
-            args: AddProductRouteArgs(key: key, mealTypeName: mealTypeName));
+            args: AddProductRouteArgs(
+                key: key, mealTypeName: mealTypeName, date: date));
 
   static const String name = 'AddProductRoute';
 }
 
 class AddProductRouteArgs {
-  const AddProductRouteArgs({this.key, required this.mealTypeName});
+  const AddProductRouteArgs(
+      {this.key, required this.mealTypeName, required this.date});
 
   final _i12.Key? key;
 
   final _i13.MealTypeNameEnum mealTypeName;
 
+  final DateTime date;
+
   @override
   String toString() {
-    return 'AddProductRouteArgs{key: $key, mealTypeName: $mealTypeName}';
+    return 'AddProductRouteArgs{key: $key, mealTypeName: $mealTypeName, date: $date}';
   }
 }
 
@@ -191,20 +200,25 @@ class MealDetailsRoute extends _i11.PageRouteInfo<MealDetailsRouteArgs> {
   MealDetailsRoute(
       {_i12.Key? key,
       required List<_i12.Color> gradientColor,
-      required _i13.MealTypeNameEnum mealTypeName})
+      required _i13.MealTypeNameEnum mealTypeName,
+      required List<_i14.Product> productsList})
       : super(MealDetailsRoute.name,
             path: '/meal-details-screen',
             args: MealDetailsRouteArgs(
                 key: key,
                 gradientColor: gradientColor,
-                mealTypeName: mealTypeName));
+                mealTypeName: mealTypeName,
+                productsList: productsList));
 
   static const String name = 'MealDetailsRoute';
 }
 
 class MealDetailsRouteArgs {
   const MealDetailsRouteArgs(
-      {this.key, required this.gradientColor, required this.mealTypeName});
+      {this.key,
+      required this.gradientColor,
+      required this.mealTypeName,
+      required this.productsList});
 
   final _i12.Key? key;
 
@@ -212,8 +226,10 @@ class MealDetailsRouteArgs {
 
   final _i13.MealTypeNameEnum mealTypeName;
 
+  final List<_i14.Product> productsList;
+
   @override
   String toString() {
-    return 'MealDetailsRouteArgs{key: $key, gradientColor: $gradientColor, mealTypeName: $mealTypeName}';
+    return 'MealDetailsRouteArgs{key: $key, gradientColor: $gradientColor, mealTypeName: $mealTypeName, productsList: $productsList}';
   }
 }

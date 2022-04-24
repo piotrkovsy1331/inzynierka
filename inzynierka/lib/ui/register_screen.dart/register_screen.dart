@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../../globals/global_widgets/fitstat_textField.dart';
@@ -119,7 +121,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         Provider.of<AuthenticationService>(context, listen: false)
             .register(login.text, password.text);
       } on FirebaseAuthException catch (e) {
-        print(e);
+        log(e.toString());
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Nie udało się zarejestrować ')));
       } finally {
