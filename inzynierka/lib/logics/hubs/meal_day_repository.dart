@@ -15,8 +15,6 @@ class MealDayRepository {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-
-
   Future<void> addProduct(
       String mealTypeName, Product product, DateTime dayAdded) async {
     try {
@@ -50,7 +48,6 @@ class MealDayRepository {
                 }
               }).toList()),
         );
-        log(mealDayToSend.toJson().toString());
 
         final jsonToSend = mealDayToSend.toJson();
         _mealDayCollection
@@ -111,6 +108,60 @@ class MealDayRepository {
     }
 
     return null;
+  }
+
+  Future<void> removeProduct(int index, String mealtype, DateTime date) async {
+    try {
+      CollectionReference _mealDayCollection =
+          _firebaseFirestore.collection(Collections.mealDay);
+      final DocumentSnapshot snapshot = await _mealDayCollection
+          .doc(date.millisecondsSinceEpoch.toString())
+          .get();
+      if (snapshot.exists) {
+        MealDay mealDay =
+            MealDayDto.fromJson(snapshot.data() as Map<String, dynamic>)
+                .toModel();
+
+        Details productDetailsToRemove = mealDay.mealList!
+            .firstWhere((element) => element.mealTypeName == mealtype)
+            .productList[index]
+            .productDetails;
+
+        mealDay.mealList!
+            .firstWhere((element) => element.mealTypeName == mealtype)
+            .productList
+            .removeAt(index);
+
+        mealDay.mealList!
+            .firstWhere((element) => element.mealTypeName == mealtype)
+            .mealDetails
+            .calories -= productDetailsToRemove.calories;
+        mealDay.mealList!
+            .firstWhere((element) => element.mealTypeName == mealtype)
+            .mealDetails
+            .fat -= productDetailsToRemove.fat;
+        mealDay.mealList!
+            .firstWhere((element) => element.mealTypeName == mealtype)
+            .mealDetails
+            .protein -= productDetailsToRemove.protein;
+        mealDay.mealList!
+            .firstWhere((element) => element.mealTypeName == mealtype)
+            .mealDetails
+            .sugar -= productDetailsToRemove.sugar;
+        mealDay.mealList!
+            .firstWhere((element) => element.mealTypeName == mealtype)
+            .mealDetails
+            .weight -= productDetailsToRemove.weight;
+
+        MealDayDto mealDayToSend = MealDayDto.fromModel(mealDay);
+        final jsonToSend = mealDayToSend.toJson();
+        _mealDayCollection
+            .doc(date.millisecondsSinceEpoch.toString())
+            .set(jsonToSend, SetOptions(merge: false));
+      }
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
 // }

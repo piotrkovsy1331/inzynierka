@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:inzynierka/logics/hubs/authentication_service.dart';
 import 'package:inzynierka/logics/hubs/hdd_hub.dart';
 import 'package:inzynierka/logics/notifiers/app_theme_notifier.dart';
@@ -36,7 +36,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    initializeDateFormatting('pl');
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<AppThemeNotifier>(
@@ -57,6 +56,14 @@ class _MyAppState extends State<MyApp> {
             theme:
                 FitstatStyles.themeData(AppThemeNotifier().darkTheme, context),
             darkTheme: ThemeData.dark(),
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('pl'),
+            ],
             title: 'FitStatApp',
             routerDelegate: _appRouter.delegate(),
             routeInformationParser: _appRouter.defaultRouteParser(),

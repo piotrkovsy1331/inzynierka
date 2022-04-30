@@ -48,7 +48,7 @@ class NoteExpandableBody extends StatelessWidget {
                     child: FadeInImage.memoryNetwork(
                       placeholder: kTransparentImage,
                       image: product.photoUrl ??
-                          "https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png",
+                          "https://cdn.pixabay.com/photo/2014/12/21/23/39/bananas-575773_1280.png",
                       fit: BoxFit.cover,
                     ),
                   ),

@@ -9,7 +9,7 @@ extension MealTypeNameEnumExtension on MealTypeNameEnum {
       case MealTypeNameEnum.breakfast:
         return 'śniadanie';
       case MealTypeNameEnum.lunch:
-        return 'luch';
+        return 'lunch';
       case MealTypeNameEnum.dinner:
         return 'obiad';
       case MealTypeNameEnum.supper:
@@ -21,4 +21,3 @@ extension MealTypeNameEnumExtension on MealTypeNameEnum {
     }
   }
 }
-
