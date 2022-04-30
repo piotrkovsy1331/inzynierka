@@ -4,11 +4,17 @@ import 'package:inzynierka/ui/meal_details_screen/widgets/product_expandable_bod
 import 'package:expandable/expandable.dart';
 
 class ProductTile extends StatefulWidget {
-  const ProductTile(
-      {Key? key, required this.product, required this.gradientColor})
-      : super(key: key);
+  const ProductTile({
+    Key? key,
+    required this.product,
+    required this.gradientColor,
+    required this.onDeleteTapped,
+    required this.index,
+  }) : super(key: key);
   final Product product;
   final List<Color> gradientColor;
+  final Function(int) onDeleteTapped;
+  final int index;
 
   @override
   State<ProductTile> createState() => _ProductTileState();
@@ -40,7 +46,9 @@ class _ProductTileState extends State<ProductTile> {
             product: widget.product,
             onArrowTapped: _onArrowTapped,
             onEditTapped: _onEditTapped,
-            onDeleteTapped: _onDeleteTapped,
+            onDeleteTapped: () {
+              widget.onDeleteTapped(widget.index);
+            },
             onProductTapped: _onProductTapped,
           ),
         ),
@@ -67,6 +75,4 @@ class _ProductTileState extends State<ProductTile> {
   }
 
   void _onEditTapped() {}
-
-  void _onDeleteTapped() {}
 }

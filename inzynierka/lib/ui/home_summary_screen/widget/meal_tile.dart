@@ -23,11 +23,7 @@ class MealTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => onMealTileTapped(
-        context,
-        gradientColor,
-        mealTypeName,
-        meal.productList,
-      ),
+          context, gradientColor, mealTypeName, meal.productList, date),
       child: Container(
           padding: const EdgeInsets.fromLTRB(10, 25, 10, 20),
           decoration: BoxDecoration(
@@ -117,10 +113,11 @@ class MealTile extends StatelessWidget {
   }
 
   void onMealTileTapped(BuildContext context, List<Color> gradientColor,
-      MealTypeNameEnum mealTypeName, List<Product> productList) {
+      MealTypeNameEnum mealTypeName, List<Product> productList, DateTime date) {
     AutoRouter.of(context).push(MealDetailsRoute(
         gradientColor: gradientColor,
         mealTypeName: mealTypeName,
-        productsList: productList));
+        productsList: productList,
+        date: date));
   }
 }

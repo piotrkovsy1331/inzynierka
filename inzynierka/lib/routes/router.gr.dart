@@ -79,7 +79,8 @@ class AppRouter extends _i11.RootStackRouter {
               key: args.key,
               gradientColor: args.gradientColor,
               mealTypeName: args.mealTypeName,
-              productsList: args.productsList));
+              productsList: args.productsList,
+              date: args.date));
     }
   };
 
@@ -201,14 +202,16 @@ class MealDetailsRoute extends _i11.PageRouteInfo<MealDetailsRouteArgs> {
       {_i12.Key? key,
       required List<_i12.Color> gradientColor,
       required _i13.MealTypeNameEnum mealTypeName,
-      required List<_i14.Product> productsList})
+      required List<_i14.Product> productsList,
+      required DateTime date})
       : super(MealDetailsRoute.name,
             path: '/meal-details-screen',
             args: MealDetailsRouteArgs(
                 key: key,
                 gradientColor: gradientColor,
                 mealTypeName: mealTypeName,
-                productsList: productsList));
+                productsList: productsList,
+                date: date));
 
   static const String name = 'MealDetailsRoute';
 }
@@ -218,7 +221,8 @@ class MealDetailsRouteArgs {
       {this.key,
       required this.gradientColor,
       required this.mealTypeName,
-      required this.productsList});
+      required this.productsList,
+      required this.date});
 
   final _i12.Key? key;
 
@@ -228,8 +232,10 @@ class MealDetailsRouteArgs {
 
   final List<_i14.Product> productsList;
 
+  final DateTime date;
+
   @override
   String toString() {
-    return 'MealDetailsRouteArgs{key: $key, gradientColor: $gradientColor, mealTypeName: $mealTypeName, productsList: $productsList}';
+    return 'MealDetailsRouteArgs{key: $key, gradientColor: $gradientColor, mealTypeName: $mealTypeName, productsList: $productsList, date: $date}';
   }
 }

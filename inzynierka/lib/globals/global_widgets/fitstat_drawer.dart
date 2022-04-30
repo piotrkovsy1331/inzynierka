@@ -24,7 +24,7 @@ class FitstatDrawer extends StatelessWidget {
                     width: 60,
                     child: ClipOval(
                       child: Image.network(
-                          'https://st2.depositphotos.com/1009634/7235/v/950/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg'),
+                          'https://cdn.pixabay.com/photo/2014/12/21/23/39/bananas-575773_1280.png'),
                     ),
                   ),
                   Column(
