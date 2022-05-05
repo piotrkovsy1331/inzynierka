@@ -24,7 +24,7 @@ class FitstatStyles {
             isDarkTheme ? const Color(0xff3A3A3B) : const Color(0xff4285F4),
         focusColor:
             isDarkTheme ? const Color(0xff0B2512) : const Color(0xffA8DAB5),
-        disabledColor: Colors.grey,
+        disabledColor: isDarkTheme ? Colors.grey[500] : Colors.grey[700],
         cardColor: isDarkTheme ? Colors.grey[500] : Colors.grey[700],
         canvasColor: isDarkTheme ? Colors.black : Colors.grey[50],
         selectedRowColor: isDarkTheme
@@ -88,6 +88,7 @@ class FitstatStyles {
               fontSize: 13,
               color: isDarkTheme ? Colors.grey[500] : Colors.grey[700],
               fontWeight: FontWeight.w400),
+
           bodyText1: TextStyle(
               fontSize: 16,
               color: isDarkTheme

@@ -1,13 +1,12 @@
 import 'package:jiffy/jiffy.dart';
 
-
-
-class TimeRangeHelper {
+class TimeHelper {
   static DateTime returnCurrentDate(DateTime date) {
-    return date;
+    return Jiffy(date).endOf(Units.DAY).dateTime.toUtc();
+    ;
   }
 
-  static DateTime returnYestardayDate( DateTime date) {
+  static DateTime returnYestardayDate(DateTime date) {
     return Jiffy(date).subtract(days: 1).endOf(Units.DAY).dateTime.toUtc();
   }
 

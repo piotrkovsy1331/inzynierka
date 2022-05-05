@@ -43,6 +43,7 @@ class FitstatValueSlider extends StatelessWidget {
                   Expanded(
                     flex: 6,
                     child: Slider(
+                      
                       value: sliderValue,
                       min: 0,
                       max: maxValue,

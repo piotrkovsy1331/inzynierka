@@ -13,15 +13,15 @@ class Validators {
     return null;
   }
 
-  static String? productNameValidator(String? productName) {
+  static String? textValidator(String? productName) {
     if (productName == null) {
-      return 'Proszę podać nazwę produktu';
+      return 'Proszę uzupełnić pole';
     }
     if (productName.length < 2) {
-      return 'Nazwa produktu jest zbyt krótka';
+      return 'Tekst jest zbyt krótki';
     }
-    if (productName.length > 20) {
-      return 'Nazwa produktu jest zbyt długa ';
+    if (productName.length > 40) {
+      return 'Tekst jest zbyt długi ';
     } else {
       return null;
     }

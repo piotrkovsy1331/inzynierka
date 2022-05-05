@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inzynierka/helpers/firestore_doc_helper.dart';
-import 'package:inzynierka/logics/firebase_schema/collections.dart';
+
 import 'package:inzynierka/models/dto/meal_day_dto.dart';
 import 'package:inzynierka/models/meal.dart';
 import 'package:inzynierka/models/meal_day.dart';
@@ -19,7 +19,7 @@ class MealDayRepository {
       String mealTypeName, Product product, DateTime dayAdded) async {
     try {
       CollectionReference _mealDayCollection =
-          _firebaseFirestore.collection(Collections.mealDay);
+          _firebaseFirestore.collection(_firebaseAuth.currentUser!.uid);
       final DocumentSnapshot snapshot = await _mealDayCollection
           .doc(dayAdded.millisecondsSinceEpoch.toString())
           .get();
@@ -83,7 +83,7 @@ class MealDayRepository {
   Future<MealDay?> getMealDay(DateTime dayAdded) async {
     try {
       CollectionReference _mealDayCollection =
-          _firebaseFirestore.collection(Collections.mealDay);
+          _firebaseFirestore.collection(_firebaseAuth.currentUser!.uid);
       final DocumentSnapshot snapshot = await _mealDayCollection
           .doc(dayAdded.millisecondsSinceEpoch.toString())
           .get();
@@ -113,7 +113,7 @@ class MealDayRepository {
   Future<void> removeProduct(int index, String mealtype, DateTime date) async {
     try {
       CollectionReference _mealDayCollection =
-          _firebaseFirestore.collection(Collections.mealDay);
+          _firebaseFirestore.collection(_firebaseAuth.currentUser!.uid);
       final DocumentSnapshot snapshot = await _mealDayCollection
           .doc(date.millisecondsSinceEpoch.toString())
           .get();

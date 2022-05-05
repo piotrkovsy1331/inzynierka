@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   static const List<Widget> _bottomBArItemList = [
     SummaryScreen(),
     SearchScreen(),
-    UserScreen(),
+    UserScoresScreen(),
   ];
   @override
   void initState() {

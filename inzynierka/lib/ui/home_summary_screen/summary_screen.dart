@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:inzynierka/helpers/time_range_helper.dart';
+import 'package:inzynierka/helpers/time_helper.dart';
 import 'package:inzynierka/globals/global_widgets/fitstat_drawer.dart';
 import 'package:inzynierka/globals/global_widgets/fitstat_tabbar.dart';
 
+import '../../globals/fitstat_appbar.dart';
 import 'widget/tab_view.dart';
 
 class SummaryScreen extends StatefulWidget {
@@ -26,19 +27,19 @@ class _SummaryScreenState extends State<SummaryScreen> {
           child: (currentDate.day == DateTime.now().day)
               ? const Text('dziś')
               : Text(DateFormat('EEEE', 'pl')
-                  .format(TimeRangeHelper.returnCurrentDate(currentDate))
+                  .format(TimeHelper.returnCurrentDate(currentDate))
                   .toString())),
       Tab(
           child: Text(DateFormat('EEEE', 'pl')
-              .format(TimeRangeHelper.returnYestardayDate(currentDate))
+              .format(TimeHelper.returnYestardayDate(currentDate))
               .toString())),
       Tab(
           child: Text(DateFormat('EEEE', 'pl')
-              .format(TimeRangeHelper.returnTwoDaysBeforeDate(currentDate))
+              .format(TimeHelper.returnTwoDaysBeforeDate(currentDate))
               .toString())),
       Tab(
           child: Text(DateFormat('EEEE', 'pl')
-              .format(TimeRangeHelper.returnTreeDaysBeforeDate(currentDate))
+              .format(TimeHelper.returnTreeDaysBeforeDate(currentDate))
               .toString())),
     ];
     return DefaultTabController(
@@ -59,12 +60,12 @@ class _SummaryScreenState extends State<SummaryScreen> {
             FitstatTabBar(tabs: tabs),
             Expanded(
                 child: TabBarView(children: [
-              TabView(date: TimeRangeHelper.returnCurrentDate(currentDate)),
-              TabView(date: TimeRangeHelper.returnYestardayDate(currentDate)),
+              TabView(date: TimeHelper.returnCurrentDate(currentDate)),
+              TabView(date: TimeHelper.returnYestardayDate(currentDate)),
               TabView(
-                  date: TimeRangeHelper.returnTwoDaysBeforeDate(currentDate)),
+                  date: TimeHelper.returnTwoDaysBeforeDate(currentDate)),
               TabView(
-                  date: TimeRangeHelper.returnTreeDaysBeforeDate(currentDate)),
+                  date: TimeHelper.returnTreeDaysBeforeDate(currentDate)),
             ])),
           ],
         ),
@@ -92,24 +93,4 @@ class _SummaryScreenState extends State<SummaryScreen> {
   }
 }
 
-class FitStatAppBar extends StatelessWidget with PreferredSizeWidget {
-  const FitStatAppBar({
-    Key? key,
-    required this.title,
-    this.trailing,
-  }) : super(key: key);
-  final String title;
-  final Widget? trailing;
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      actions: trailing != null ? [trailing!] : null,
-      title: Text(
-        title,
-        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-      ),
-    );
-  }
-}
+
