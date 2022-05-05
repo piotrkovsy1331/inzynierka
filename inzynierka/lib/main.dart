@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:inzynierka/logics/hubs/authentication_service.dart';
 import 'package:inzynierka/logics/hubs/hdd_hub.dart';
 import 'package:inzynierka/logics/notifiers/app_theme_notifier.dart';
+import 'package:inzynierka/logics/notifiers/user_data_notifier.dart';
 import 'package:inzynierka/routes/router.gr.dart';
 import 'package:provider/provider.dart';
 
@@ -38,6 +39,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<UserDataNotifier>(
+          create: (_) => UserDataNotifier(),
+        ),
         ChangeNotifierProvider<AppThemeNotifier>(
           create: (_) => AppThemeNotifier(),
         ),

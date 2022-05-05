@@ -1,4 +1,5 @@
 import 'package:inzynierka/models/meal.dart';
+import 'package:inzynierka/models/user_data.dart';
 
 import '../models/details.dart';
 import '../models/enums/meal_type_enum.dart';
@@ -32,5 +33,11 @@ class FireStoreDocHelper {
         productList: []),
   ];
 
-
+  static final emptyUserData = UserData(
+      firstName: '',
+      secondName: '',
+      heightValue: 0,
+      weightValue: 0,
+      ageValue: 0,
+      dailyCaloriesLimit: 0);
 }

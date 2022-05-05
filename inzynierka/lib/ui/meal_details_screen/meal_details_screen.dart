@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:inzynierka/logics/hubs/meal_day_repository.dart';
 import 'package:inzynierka/models/enums/meal_type_enum.dart';
-import 'package:inzynierka/ui/home_summary_screen/summary_screen.dart';
 import 'package:inzynierka/ui/meal_details_screen/widgets/product_tile.dart';
 
+import '../../globals/fitstat_appbar.dart';
 import '../../models/product.dart';
 
 class MealDetailsScreen extends StatefulWidget {
@@ -29,23 +29,30 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
       appBar: FitStatAppBar(
         title: widget.mealTypeName.displayName,
       ),
-      body: ListView.builder(
-        itemCount: widget.productsList.length,
-        itemBuilder: (context, index) {
-          return ProductTile(
-            product: widget.productsList[index],
-            gradientColor: widget.gradientColor,
-            onDeleteTapped: (iddex) {
-              deleteProduct(
-                  index, widget.mealTypeName.displayName, widget.date);
-              widget.productsList.removeAt(index);
+      body: (widget.productsList.isEmpty)
+          ? Center(
+              child: Text(
+                'Brak posiłków',
+                style: Theme.of(context).textTheme.headline3!,
+              ),
+            )
+          : ListView.builder(
+              itemCount: widget.productsList.length,
+              itemBuilder: (context, index) {
+                return ProductTile(
+                  product: widget.productsList[index],
+                  gradientColor: widget.gradientColor,
+                  onDeleteTapped: (iddex) {
+                    deleteProduct(
+                        index, widget.mealTypeName.displayName, widget.date);
+                    widget.productsList.removeAt(index);
 
-              setState(() {});
-            },
-            index: index,
-          );
-        },
-      ),
+                    setState(() {});
+                  },
+                  index: index,
+                );
+              },
+            ),
     );
   }
 

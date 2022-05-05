@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:inzynierka/helpers/validators.dart';
 import 'package:inzynierka/logics/hubs/meal_day_repository.dart';
 import 'package:inzynierka/models/details.dart';
 import 'package:inzynierka/models/enums/meal_type_enum.dart';
 import 'package:inzynierka/models/product.dart';
-import 'package:inzynierka/ui/home_summary_screen/summary_screen.dart';
+import 'package:inzynierka/ui/add_meal_screen/widget/fitstat_textformfield.dart';
 
+import '../../globals/fitstat_appbar.dart';
 import 'widget/fitstat_value_slider.dart';
 
 class AddProductScreen extends StatefulWidget {
@@ -49,24 +49,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                        controller: _productNameController,
-                        validator: Validators.productNameValidator,
-                        decoration: InputDecoration(
-                          labelText: 'Nazwa Produktu',
-                          labelStyle: Theme.of(context).textTheme.headline4,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                            borderSide:
-                                BorderSide(color: Theme.of(context).cardColor),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              borderSide: const BorderSide(
-                                  color: Colors.green, width: 2.0)),
-                          fillColor: Colors.green,
-                        ),
-                        keyboardType: TextInputType.text),
+                    child: FitStatTextFormFieldWithBorder(
+                        productNameController: _productNameController,
+                        placeholder: 'Podaj nazwę produktu'),
                   ),
                   FitstatValueSlider(
                     sliderValue: caloriesValue,
