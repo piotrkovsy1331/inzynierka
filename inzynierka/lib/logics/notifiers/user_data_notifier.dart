@@ -10,8 +10,8 @@ class UserDataNotifier extends ChangeNotifier {
       heightValue: 0,
       weightValue: 0,
       ageValue: 0,
-      dailyCaloriesLimit: 0);
-      
+      dailyCaloriesLimit: 0,
+      photoUrl: '');
 
   void loadUserData() async {
     _userData = await UserDataRepository().getUserData();

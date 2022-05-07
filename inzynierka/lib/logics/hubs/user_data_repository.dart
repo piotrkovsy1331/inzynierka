@@ -6,7 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:inzynierka/helpers/firestore_doc_helper.dart';
 import 'package:inzynierka/models/dto/user_data_dto.dart';
 import 'package:inzynierka/models/user_data.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as path;
 
 class UserDataRepository {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
@@ -62,18 +62,24 @@ class UserDataRepository {
   }
 
   Future<String> uploadImage(File image) async {
-    String url = '';
+    String filePath = image.path;
 
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    String filePath = '${appDocDir.absolute}/${image.path}';
-    Reference reference =
-        _firebaseStorage.ref().child('user_profile_pictures/${image.path}');
+    Reference reference = _firebaseStorage
+        .ref()
+        .child('user_profile_pictures/${path.basename(image.path)}');
     File file = File(filePath);
-    reference.putFile(file).snapshotEvents.listen((event) {
-      if (event.state == TaskState.success) {
-        reference.getDownloadURL().then((value) => url = value);
-      }
-    });
-    return url;
+    await reference.putFile(file);
+    return await reference.getDownloadURL();
+  }
+
+  Future<String> replaceImage(String imageToRemoveUrl, File image) async {
+    deleteImage(imageToRemoveUrl);
+    return uploadImage(image);
+  }
+
+  Future<void> deleteImage(String imageToRemoveUrl) async {
+    Reference reference = _firebaseStorage.ref().child(
+        'user_profile_pictures/${imageToRemoveUrl.split('/').toList().last}');
+    await reference.delete();
   }
 }

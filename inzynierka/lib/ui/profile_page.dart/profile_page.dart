@@ -1,17 +1,19 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:inzynierka/globals/fitstat_appbar.dart';
 import 'package:inzynierka/globals/global_widgets/buttons_row.dart';
-
+import 'package:inzynierka/logics/hubs/user_data_repository.dart';
 import 'package:inzynierka/logics/notifiers/user_data_notifier.dart';
 import 'package:inzynierka/models/user_data.dart';
 import 'package:inzynierka/ui/add_meal_screen/widget/fitstat_value_slider.dart';
-import 'package:image_picker/image_picker.dart';
-
+import 'package:inzynierka/ui/profile_page.dart/widgets/rounded_image_from_file.dart';
+import 'package:inzynierka/ui/profile_page.dart/widgets/rounded_image_from_network.dart';
 import 'package:inzynierka/ui/profile_page.dart/widgets/user_info_section.dart';
-import '../add_meal_screen/widget/fitstat_textformfield.dart';
 import 'package:provider/provider.dart';
+
+import '../add_meal_screen/widget/fitstat_textformfield.dart';
 
 class ProfilePageScreen extends StatefulWidget {
   const ProfilePageScreen({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class ProfilePageScreen extends StatefulWidget {
   @override
   State<ProfilePageScreen> createState() => _ProfilePageScreenState();
 }
-//TODO Rozgryźć dodawanie zdjecia do bazy 
+
 class _ProfilePageScreenState extends State<ProfilePageScreen> {
   late final UserData userData;
   bool editable = false;
@@ -39,7 +41,7 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
   late double ageValue = 0;
   late double dailyCaloriesLimit = 0;
 
-  late File? profileImagePicked ;
+  late File? profileImagePicked = null;
 
   bool? heightValidated;
   bool? weightValidated;
@@ -87,7 +89,9 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
                   Column(
                     children: [
                       Image.network(
-                          'https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250',
+                          photoUrl.isEmpty
+                              ? "https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250"
+                              : photoUrl,
                           fit: BoxFit.fitWidth,
                           width: double.infinity,
                           height: backgroundPhotoHeight),
@@ -101,76 +105,39 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
                   Positioned(
                     top: backgroundPhotoHeight - profilePictureHeight / 2,
                     child: profileImagePicked != null
-                        ? Container(
-                            width: 130,
-                            height: profilePictureHeight,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(80),
-                              border: Border.all(
-                                width: 5,
-                                color: const Color.fromARGB(255, 255, 253, 253),
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                    spreadRadius: 2,
-                                    blurRadius: 10,
-                                    color: Colors.black.withOpacity(0.1),
-                                    offset: const Offset(0, 10))
-                              ],
-                            ),
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(80.0),
-                                child: Image.file(
-                                  profileImagePicked!,
-                                  fit: BoxFit.cover,
-                                )))
-                        : Container(
-                            width: 130,
-                            height: profilePictureHeight,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 4,
-                                  color: Theme.of(context)
-                                      .scaffoldBackgroundColor),
-                              boxShadow: [
-                                BoxShadow(
-                                    spreadRadius: 2,
-                                    blurRadius: 10,
-                                    color: Colors.black.withOpacity(0.1),
-                                    offset: const Offset(0, 10))
-                              ],
-                              shape: BoxShape.circle,
-                              image: const DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                  "https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250",
-                                ),
-                              ),
-                            ),
-                          ),
+                        ? RoundedImageFromFile(
+                            profilePictureHeight: profilePictureHeight,
+                            profileImagePicked: profileImagePicked)
+                        : RoundedImageFromNetwork(
+                            profilePictureHeight: profilePictureHeight,
+                            photoUrl: photoUrl),
                   ),
-                  Positioned(
-                      bottom: backgroundPhotoHeight - profilePictureHeight - 30,
-                      right: MediaQuery.of(context).size.width / 2 - 75,
-                      child: InkWell(
-                        onTap: () => onEditPhotoTapped(),
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor,
+                  editable == true
+                      ? Positioned(
+                          bottom:
+                              backgroundPhotoHeight - profilePictureHeight - 30,
+                          right: MediaQuery.of(context).size.width / 2 - 75,
+                          child: InkWell(
+                            onTap: () => onEditPhotoTapped(),
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  width: 4,
+                                  color:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                ),
+                                color: Colors.green,
+                              ),
+                              child: const Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                              ),
                             ),
-                            color: Colors.green,
-                          ),
-                          child: const Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                          ),
-                        ),
-                      )),
+                          ))
+                      : const SizedBox.shrink()
                 ],
               ),
             ),
@@ -307,7 +274,7 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
   }
 
   // Todo make form validation and send data to firebase also solve savin g photo to firestore data collection
-  void onSubmitPressed() {
+  void onSubmitPressed() async {
     name = ((_firstNameValueController.text != name) &&
             _firstNameValueController.text.isNotEmpty &&
             (_firstNameValueController.text.length > 3))
@@ -319,12 +286,14 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
         ? _secondNameValueController.text
         : secondName;
     bool _passed2 = validateSliders();
-    if (_passed2 == true) {
+
+    if (_passed2 == true || profileImagePicked != null) {
       Provider.of<UserDataNotifier>(context, listen: false).editUserInfo(
         UserData(
           firstName: name,
           secondName: secondName,
-          photoUrl: profileImagePicked != null ? null : photoUrl  ,
+          photoUrl:
+              profileImagePicked != null ? await addOrReplace() : photoUrl,
           heightValue: heightValue.toInt(),
           weightValue: weightValue.toInt(),
           ageValue: ageValue.toInt(),
@@ -340,6 +309,18 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Dane nie zostały zmienione')));
     }
+  }
+
+  Future<String> addOrReplace() async {
+    String _url = '';
+    if (profileImagePicked != null && photoUrl.isNotEmpty) {
+      _url = await UserDataRepository()
+          .replaceImage(photoUrl, profileImagePicked!);
+    }
+    if (profileImagePicked != null && photoUrl.isEmpty) {
+      _url = await UserDataRepository().uploadImage(profileImagePicked!);
+    }
+    return _url;
   }
 
   bool validateSliders() {
