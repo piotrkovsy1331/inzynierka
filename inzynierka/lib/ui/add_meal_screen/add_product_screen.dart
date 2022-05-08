@@ -67,9 +67,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   ),
                   FitstatValueSlider(
                     sliderValue: proteinValue,
-                    unit: 'białko/100g',
+                    unit: 'tłuszcz/100g',
                     maxValue: 99,
-                    hintText: 'Podaj ilość białka na 100g produktu',
+                    hintText: 'Podaj ilość tłuszczu na 100g produktu',
                     validated: proteinValidated,
                     onValueChange: (double value) {
                       setState(() {
@@ -93,7 +93,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     sliderValue: sugarValue,
                     unit: 'cukier/100g',
                     maxValue: 99,
-                    hintText: 'Podaj ilość tłuszczu na 100g produktu',
+                    hintText: 'Podaj ilość cukru na 100g produktu',
                     validated: sugarValidated,
                     onValueChange: (double value) {
                       setState(() {
@@ -104,7 +104,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   FitstatValueSlider(
                     sliderValue: weightValue,
                     unit: 'gram',
-                    maxValue: 99,
+                    maxValue: 1000,
                     hintText: 'Podaj wagę produktu',
                     validated: weightValidated,
                     onValueChange: (double value) {
@@ -222,10 +222,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
         Product(
             name: _productNameController.text,
             productDetails: Details(
-                calories: caloriesValue.floor(),
-                fat: fatValue.floor(),
-                protein: proteinValue.floor(),
-                sugar: sugarValue.floor(),
+                calories: countValueforWeight(weightValue, caloriesValue),
+                fat: countValueforWeight(weightValue, fatValue),
+                protein: countValueforWeight(weightValue, proteinValue),
+                sugar: countValueforWeight(weightValue, sugarValue),
                 weight: weightValue.floor())),
         widget.date,
       );
@@ -236,5 +236,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Proszę uzupełnić wszystkie powysze wartości ')));
     }
+  }
+
+  int countValueforWeight(double weight, double value) {
+    return (value * weight / 100).floor();
   }
 }

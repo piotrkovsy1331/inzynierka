@@ -3,7 +3,7 @@ import 'package:jiffy/jiffy.dart';
 class TimeHelper {
   static DateTime returnCurrentDate(DateTime date) {
     return Jiffy(date).endOf(Units.DAY).dateTime.toUtc();
-    ;
+    
   }
 
   static DateTime returnYestardayDate(DateTime date) {
@@ -17,4 +17,6 @@ class TimeHelper {
   static DateTime returnTreeDaysBeforeDate(DateTime date) {
     return Jiffy(date).subtract(days: 3).endOf(Units.DAY).dateTime.toUtc();
   }
+
+  
 }

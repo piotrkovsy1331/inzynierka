@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inzynierka/helpers/firestore_doc_helper.dart';
-
 import 'package:inzynierka/models/dto/meal_day_dto.dart';
 import 'package:inzynierka/models/meal.dart';
 import 'package:inzynierka/models/meal_day.dart';
@@ -108,6 +107,31 @@ class MealDayRepository {
     }
 
     return null;
+  }
+
+  Future<List<MealDay>> getMealDayListByDates(
+      DateTime startDate, DateTime endDate) async {
+    List<MealDay> arrayToReturn = [];
+
+    try {
+      CollectionReference _mealDayCollection =
+          _firebaseFirestore.collection(_firebaseAuth.currentUser!.uid);
+
+      var query = await _mealDayCollection
+          .where('dateAdded',
+              isGreaterThanOrEqualTo: startDate.millisecondsSinceEpoch)
+          .get();
+
+      query.docs.forEach((element) {
+        arrayToReturn.add(
+            MealDayDto.fromJson(element.data() as Map<String, dynamic>)
+                .toModel());
+      });
+    } catch (e) {
+      print(e);
+    }
+
+    return arrayToReturn;
   }
 
   Future<void> removeProduct(int index, String mealtype, DateTime date) async {

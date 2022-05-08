@@ -9,10 +9,10 @@ class UserInfoSection extends StatelessWidget {
       required this.ageValue,
       required this.dailyCaloriesLimit})
       : super(key: key);
-  late double heightValue = 0;
-  late double weightValue = 0;
-  late double ageValue = 0;
-  late double dailyCaloriesLimit = 0;
+  double heightValue = 0;
+  double weightValue = 0;
+  double ageValue = 0;
+  double dailyCaloriesLimit = 0;
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import '../../logics/notifiers/app_theme_notifier.dart';
 
 class AnimatedSwitchButton extends StatefulWidget {
-   AnimatedSwitchButton({Key? key, required this.themeChange})
-      : super(key: key);
-  AppThemeNotifier themeChange;
+const   AnimatedSwitchButton({Key? key, required this.themeChange}) : super(key: key);
+  final AppThemeNotifier themeChange;
   @override
   State<AnimatedSwitchButton> createState() => _AnimatedSwitchButtonState();
 }
