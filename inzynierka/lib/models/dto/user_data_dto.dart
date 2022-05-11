@@ -21,7 +21,7 @@ class UserDataDTO {
   UserDataDTO.fromJson(Map<String, dynamic> json)
       : firstName = json['firstName'] as String,
         secondName = json['secondName'] as String,
-        photoUrl = json['photoUrl'] as String,
+        photoUrl = json['photoUrl'] ?? "",
         heightValue = json['heightValue'] as int,
         weightValue = json['weightValue'] as int,
         ageValue = json['ageValue'] as int,
@@ -52,7 +52,7 @@ class UserDataDTO {
     return UserDataDTO(
         firstName: userData.firstName,
         secondName: userData.secondName,
-        photoUrl:userData.photoUrl,
+        photoUrl: userData.photoUrl,
         heightValue: userData.heightValue,
         weightValue: userData.weightValue,
         ageValue: userData.ageValue,
