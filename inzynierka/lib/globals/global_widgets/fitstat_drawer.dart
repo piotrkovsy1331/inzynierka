@@ -78,14 +78,6 @@ class FitstatDrawer extends StatelessWidget {
           }),
           InkWell(
             onTap: () {
-              AutoRouter.of(context).push((const ThemeExampleRoute()));
-            },
-            child: ListTile(
-                title: Text('ThemeExampleScreeenGooo ',
-                    style: Theme.of(context).textTheme.headline4!)),
-          ),
-          InkWell(
-            onTap: () {
               AutoRouter.of(context).push((const ProfilePageRoute()));
             },
             child: ListTile(

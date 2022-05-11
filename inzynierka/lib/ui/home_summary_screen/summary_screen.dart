@@ -62,10 +62,8 @@ class _SummaryScreenState extends State<SummaryScreen> {
                 child: TabBarView(children: [
               TabView(date: TimeHelper.returnCurrentDate(currentDate)),
               TabView(date: TimeHelper.returnYestardayDate(currentDate)),
-              TabView(
-                  date: TimeHelper.returnTwoDaysBeforeDate(currentDate)),
-              TabView(
-                  date: TimeHelper.returnTreeDaysBeforeDate(currentDate)),
+              TabView(date: TimeHelper.returnTwoDaysBeforeDate(currentDate)),
+              TabView(date: TimeHelper.returnTreeDaysBeforeDate(currentDate)),
             ])),
           ],
         ),
@@ -92,5 +90,3 @@ class _SummaryScreenState extends State<SummaryScreen> {
     });
   }
 }
-
-

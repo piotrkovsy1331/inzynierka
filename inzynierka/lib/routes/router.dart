@@ -8,7 +8,6 @@ import 'package:inzynierka/ui/login_screen/login_screen.dart';
 import 'package:inzynierka/ui/meal_details_screen/meal_details_screen.dart';
 import 'package:inzynierka/ui/profile_page.dart/profile_page.dart';
 import 'package:inzynierka/ui/register_screen.dart/register_screen.dart';
-import 'package:inzynierka/theme_example.dart';
 
 import '../ui/wrapper.dart';
 
@@ -22,7 +21,6 @@ import '../ui/wrapper.dart';
     AutoRoute(page: SummaryScreen),
     AutoRoute(page: SearchScreen),
     AutoRoute(page: UserScoresScreen),
-    AutoRoute(page: ThemeExampleScreen),
     AutoRoute(page: AddProductScreen),
     AutoRoute(page: MealDetailsScreen),
     AutoRoute(page: ProfilePageScreen),

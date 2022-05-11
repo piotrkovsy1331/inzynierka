@@ -45,6 +45,7 @@ class _FitstatTextFieldState extends State<FitstatTextField> {
       obscureText: _isPassword && !_showPassword,
       style: Theme.of(context).textTheme.bodyText1,
       decoration: InputDecoration(
+          labelStyle: Theme.of(context).textTheme.headline4,
           label: Text(widget.label),
           contentPadding: const EdgeInsets.only(left: 10),
           suffixIcon: _isPassword

@@ -43,10 +43,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             children: [
                               Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(vertical: 0),
-
-                                ///TODO Dodaj / Podmień Logo na ludzkie
-                                child: Image.asset('assets/graphics/logo.png'),
+                                    const EdgeInsets.symmetric(vertical: 40),
+                                child: Text(
+                                  'FitstatApp.',
+                                  style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                      fontSize: 45,
+                                      fontWeight: FontWeight.w800,
+                                      letterSpacing: 2,
+                                      fontStyle: FontStyle.italic),
+                                ),
                               ),
                               Text(
                                 'Zarejestruj się  ',
