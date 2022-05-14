@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:inzynierka/logics/hubs/meal_day_repository.dart';
 import 'package:inzynierka/logics/notifiers/app_theme_notifier.dart';
+import 'package:inzynierka/models/meal.dart';
 import 'package:inzynierka/models/meal_day.dart';
 import 'package:inzynierka/shared/style/fitstat_gradient.dart';
+import 'package:inzynierka/ui/home_summary_screen/widget/meal_summary_tile.dart';
 import 'package:inzynierka/ui/home_summary_screen/widget/meal_tile.dart';
 import 'package:provider/provider.dart';
 
@@ -38,6 +40,14 @@ class _TabViewState extends State<TabView> {
             if (snapshot.connectionState == ConnectionState.done) {
               return ListView(
                 children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  MealSummaryTile(
+                      gradientColor: appTheme.darkTheme
+                          ? FitstatGradient.fireDark
+                          : FitstatGradient.fire,
+                      mealDay: snapshot.data!),
                   const SizedBox(
                     height: 10,
                   ),

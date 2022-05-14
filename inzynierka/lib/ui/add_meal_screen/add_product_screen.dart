@@ -3,8 +3,9 @@ import 'package:inzynierka/logics/hubs/meal_day_repository.dart';
 import 'package:inzynierka/models/details.dart';
 import 'package:inzynierka/models/enums/meal_type_enum.dart';
 import 'package:inzynierka/models/product.dart';
+import 'package:inzynierka/routes/router.gr.dart';
 import 'package:inzynierka/ui/add_meal_screen/widget/fitstat_textformfield.dart';
-
+import 'package:auto_route/auto_route.dart';
 import '../../globals/fitstat_appbar.dart';
 import 'widget/fitstat_value_slider.dart';
 
@@ -232,6 +233,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
       _addProductFormKey.currentState!.reset();
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Produkt został dodany ')));
+      AutoRouter.of(context).push(const HomeRoute());
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Proszę uzupełnić wszystkie powysze wartości ')));
