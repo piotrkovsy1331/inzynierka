@@ -78,8 +78,7 @@ class UserDataRepository {
   }
 
   Future<void> deleteImage(String imageToRemoveUrl) async {
-    Reference reference = _firebaseStorage.ref().child(
-        'user_profile_pictures/${imageToRemoveUrl.split('/').toList().last}');
+    Reference reference = _firebaseStorage.refFromURL(imageToRemoveUrl);
     await reference.delete();
   }
 }
