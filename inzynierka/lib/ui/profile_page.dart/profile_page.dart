@@ -7,13 +7,16 @@ import 'package:inzynierka/globals/global_widgets/buttons_row.dart';
 import 'package:inzynierka/logics/hubs/user_data_repository.dart';
 import 'package:inzynierka/logics/notifiers/user_data_notifier.dart';
 import 'package:inzynierka/models/user_data.dart';
-import 'package:inzynierka/ui/add_meal_screen/widget/fitstat_value_slider.dart';
+
 import 'package:inzynierka/ui/profile_page.dart/widgets/rounded_image_from_file.dart';
 import 'package:inzynierka/ui/profile_page.dart/widgets/rounded_image_from_network.dart';
 import 'package:inzynierka/ui/profile_page.dart/widgets/user_info_section.dart';
 import 'package:provider/provider.dart';
 
-import '../add_meal_screen/widget/fitstat_textformfield.dart';
+import '../add_product_screen/widget/fitstat_textformfield.dart';
+import '../add_product_screen/widget/fitstat_value_slider.dart';
+
+
 
 class ProfilePageScreen extends StatefulWidget {
   const ProfilePageScreen({Key? key}) : super(key: key);

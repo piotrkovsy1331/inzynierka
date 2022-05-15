@@ -4,8 +4,10 @@ import 'package:inzynierka/models/details.dart';
 import 'package:inzynierka/models/enums/meal_type_enum.dart';
 import 'package:inzynierka/models/product.dart';
 import 'package:inzynierka/routes/router.gr.dart';
-import 'package:inzynierka/ui/add_meal_screen/widget/fitstat_textformfield.dart';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:inzynierka/ui/add_product_screen/widget/fitstat_textformfield.dart';
+
 import '../../globals/fitstat_appbar.dart';
 import 'widget/fitstat_value_slider.dart';
 
