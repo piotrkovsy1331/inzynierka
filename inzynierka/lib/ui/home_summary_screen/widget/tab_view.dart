@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inzynierka/logics/hubs/meal_day_repository.dart';
 import 'package:inzynierka/logics/notifiers/app_theme_notifier.dart';
-import 'package:inzynierka/models/meal.dart';
 import 'package:inzynierka/models/meal_day.dart';
 import 'package:inzynierka/shared/style/fitstat_gradient.dart';
 import 'package:inzynierka/ui/home_summary_screen/widget/meal_summary_tile.dart';
@@ -35,7 +34,7 @@ class _TabViewState extends State<TabView> {
           future: mealday,
           builder: (BuildContext context, AsyncSnapshot<MealDay?> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: Text('Dupa'));
+              return const Center(child: CircularProgressIndicator());
             }
             if (snapshot.connectionState == ConnectionState.done) {
               return ListView(
@@ -110,7 +109,8 @@ class _TabViewState extends State<TabView> {
               );
             } else {
               return const Center(
-                child: Text('Error Screen'),
+                child: Text(
+                    'Nie udało śię pobrać danych, proszę spradzić połączenie internetowe i spróbować ponownie '),
               );
             }
           });

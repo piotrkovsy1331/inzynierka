@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inzynierka/globals/global_widgets/fitstat_drawer.dart';
 import 'package:inzynierka/ui/home_search_screen/search_screen.dart';
 import 'package:inzynierka/ui/home_summary_screen/summary_screen.dart';
-import 'package:inzynierka/ui/home_user_screen.dart/user_screen.dart';
+import 'package:inzynierka/ui/home_user_goal_screen.dart/user_goal_screen.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   static const List<Widget> _bottomBArItemList = [
     SummaryScreen(),
     SearchScreen(),
-    UserScoresScreen(),
+    UserGoalScreen(),
   ];
   @override
   void initState() {

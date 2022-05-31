@@ -48,7 +48,7 @@ class NoteExpandableBody extends StatelessWidget {
                     child: FadeInImage.memoryNetwork(
                       placeholder: kTransparentImage,
                       image: product.photoUrl ??
-                          "https://cdn.pixabay.com/photo/2014/12/21/23/39/bananas-575773_1280.png",
+                          "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_1280.png",
                       fit: BoxFit.cover,
                     ),
                   ),

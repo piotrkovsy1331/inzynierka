@@ -16,8 +16,6 @@ import 'package:provider/provider.dart';
 import '../add_product_screen/widget/fitstat_textformfield.dart';
 import '../add_product_screen/widget/fitstat_value_slider.dart';
 
-
-
 class ProfilePageScreen extends StatefulWidget {
   const ProfilePageScreen({Key? key}) : super(key: key);
 
@@ -69,8 +67,8 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const FitStatAppBar(
-        title: 'Edytuj Profil',
+      appBar: FitStatAppBar(
+        title: editable ? 'Edytuj Profil' : "Profil użytkownika ",
         // trailing: IconButton(
         //   onPressed: onEditTappped,
         //   icon: const Icon(
@@ -106,6 +104,7 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
                     ],
                   ),
                   Positioned(
+                    
                     top: backgroundPhotoHeight - profilePictureHeight / 2,
                     child: profileImagePicked != null
                         ? RoundedImageFromFile(
@@ -276,7 +275,6 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
     );
   }
 
-  // Todo make form validation and send data to firebase also solve savin g photo to firestore data collection
   void onSubmitPressed() async {
     name = ((_firstNameValueController.text != name) &&
             _firstNameValueController.text.isNotEmpty &&

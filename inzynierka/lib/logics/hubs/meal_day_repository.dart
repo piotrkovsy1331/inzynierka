@@ -22,41 +22,11 @@ class MealDayRepository {
       final DocumentSnapshot snapshot = await _mealDayCollection
           .doc(dayAdded.millisecondsSinceEpoch.toString())
           .get();
-      if (snapshot.exists) {
-        MealDay mealToMerge =
-            MealDayDto.fromJson(snapshot.data() as Map<String, dynamic>)
-                .toModel();
-
-        log(mealToMerge.toString());
-        MealDayDto mealDayToSend = MealDayDto.fromModel(
-          MealDay(
-              dateAdded: mealToMerge.dateAdded,
-              addedBy: mealToMerge.addedBy,
-              mealList: mealToMerge.mealList!.map<Meal>((mealListElement) {
-                Meal mealTmp = Meal(
-                    mealTypeName: mealListElement.mealTypeName,
-                    mealDetails:
-                        sumMealDetails(mealListElement, product, mealTypeName),
-                    productList: mealListElement.productList);
-                if (mealListElement.mealTypeName == mealTypeName) {
-                  mealTmp.productList.add(product);
-
-                  return mealTmp;
-                } else {
-                  return mealTmp;
-                }
-              }).toList()),
-        );
-
-        final jsonToSend = mealDayToSend.toJson();
-        _mealDayCollection
-            .doc(mealToMerge.dateAdded.toString())
-            .set(jsonToSend, SetOptions(merge: false));
-      } else {
-        ///every ignited mealday document needs to have list of 5 meals
+      if (!snapshot.exists) {
+        ///empty docunment consists of 5 meals
         List<Meal> mealListToInit = FireStoreDocHelper.emptyMealsList;
 
-        /// Looking for meal in which product shoukd be added
+        /// Looking for meal in which product should be added
         for (Meal meal in mealListToInit) {
           if (mealTypeName == meal.mealTypeName) {
             meal.mealTypeName = mealTypeName;
@@ -71,6 +41,32 @@ class MealDayRepository {
         await _mealDayCollection
             .doc(dayAdded.millisecondsSinceEpoch.toString())
             .set(mealdayToinit.toJson());
+      } else {
+        MealDay mealToMerge =
+            MealDayDto.fromJson(snapshot.data() as Map<String, dynamic>)
+                .toModel();
+        MealDayDto mealDayToSend = MealDayDto.fromModel(
+          MealDay(
+              dateAdded: mealToMerge.dateAdded,
+              addedBy: mealToMerge.addedBy,
+              mealList: mealToMerge.mealList!.map<Meal>((mealListElement) {
+                Meal mealTmp = Meal(
+                    mealTypeName: mealListElement.mealTypeName,
+                    mealDetails:
+                        sumMealDetails(mealListElement, product, mealTypeName),
+                    productList: mealListElement.productList);
+                if (mealListElement.mealTypeName == mealTypeName) {
+                  mealTmp.productList.add(product);
+                  return mealTmp;
+                } else {
+                  return mealTmp;
+                }
+              }).toList()),
+        );
+        final jsonToSend = mealDayToSend.toJson();
+        _mealDayCollection
+            .doc(mealToMerge.dateAdded.toString())
+            .set(jsonToSend, SetOptions(merge: false));
       }
     } catch (e) {
       log(

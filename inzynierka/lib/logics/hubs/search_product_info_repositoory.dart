@@ -39,6 +39,7 @@ class SearchProductInfoRepository {
     for (Food food in apiNutritionListRsponse.foods) {
       _returnArray.add(Product(
           name: food.foodName ?? '',
+          photoUrl: food.photo!.thumb,
           productDetails: Details(
               calories: food.nfCalories != null ? food.nfCalories!.toInt() : 0,
               fat: food.nfTotalFat != null ? food.nfTotalFat!.toInt() : 0,

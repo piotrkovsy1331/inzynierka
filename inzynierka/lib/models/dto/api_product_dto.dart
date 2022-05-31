@@ -113,13 +113,13 @@ class Photo {
         thumb: json["thumb"],
         highres: json["highres"],
         isUserUploaded:
-            json["is_user_uploaded"] == null ? null : json["is_user_uploaded"],
+            json["is_user_uploaded"] ?? null,
       );
 
   Map<String, dynamic> toJson() => {
         "thumb": thumb,
         "highres": highres,
-        "is_user_uploaded": isUserUploaded == null ? null : isUserUploaded,
+        "is_user_uploaded": isUserUploaded ?? null,
       };
 }
 

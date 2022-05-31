@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:inzynierka/globals/enums/time_range.dart';
-import 'package:inzynierka/ui/home_user_screen.dart/widgets/tab_view.dart';
+import 'package:inzynierka/ui/home_user_goal_screen.dart/widgets/tab_view.dart';
 
 import '../../globals/fitstat_appbar.dart';
 import '../../globals/global_widgets/fitstat_drawer.dart';
 import '../../globals/global_widgets/fitstat_tabbar.dart';
 
-class UserScoresScreen extends StatefulWidget {
-  const UserScoresScreen({Key? key}) : super(key: key);
+class UserGoalScreen extends StatefulWidget {
+  const UserGoalScreen({Key? key}) : super(key: key);
 
   @override
-  State<UserScoresScreen> createState() => _UserScoresScreenState();
+  State<UserGoalScreen> createState() => _UserGoalScreenState();
 }
 
-class _UserScoresScreenState extends State<UserScoresScreen> {
+class _UserGoalScreenState extends State<UserGoalScreen> {
   DateTime currentDate = DateTime.now();
   DateTime yesterday = DateTime.now();
   late DateTime twoDaysBefore;

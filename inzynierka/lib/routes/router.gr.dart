@@ -20,7 +20,8 @@ import 'package:inzynierka/ui/api_product_page/api_product_page.dart' as _i11;
 import 'package:inzynierka/ui/home_screen/home_screen.dart' as _i4;
 import 'package:inzynierka/ui/home_search_screen/search_screen.dart' as _i6;
 import 'package:inzynierka/ui/home_summary_screen/summary_screen.dart' as _i5;
-import 'package:inzynierka/ui/home_user_screen.dart/user_screen.dart' as _i7;
+import 'package:inzynierka/ui/home_user_goal_screen.dart/user_goal_screen.dart'
+    as _i7;
 import 'package:inzynierka/ui/login_screen/login_screen.dart' as _i2;
 import 'package:inzynierka/ui/meal_details_screen/meal_details_screen.dart'
     as _i9;
@@ -58,9 +59,9 @@ class AppRouter extends _i12.RootStackRouter {
       return _i12.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i6.SearchScreen());
     },
-    UserScoresRoute.name: (routeData) {
+    UserGoalRoute.name: (routeData) {
       return _i12.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i7.UserScoresScreen());
+          routeData: routeData, child: const _i7.UserGoalScreen());
     },
     AddProductRoute.name: (routeData) {
       final args = routeData.argsAs<AddProductRouteArgs>();
@@ -100,7 +101,7 @@ class AppRouter extends _i12.RootStackRouter {
         _i12.RouteConfig(HomeRoute.name, path: '/home-screen'),
         _i12.RouteConfig(SummaryRoute.name, path: '/summary-screen'),
         _i12.RouteConfig(SearchRoute.name, path: '/search-screen'),
-        _i12.RouteConfig(UserScoresRoute.name, path: '/user-scores-screen'),
+        _i12.RouteConfig(UserGoalRoute.name, path: '/user-goal-screen'),
         _i12.RouteConfig(AddProductRoute.name, path: '/add-product-screen'),
         _i12.RouteConfig(MealDetailsRoute.name, path: '/meal-details-screen'),
         _i12.RouteConfig(ProfilePageRoute.name, path: '/profile-page-screen'),
@@ -157,12 +158,11 @@ class SearchRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.UserScoresScreen]
-class UserScoresRoute extends _i12.PageRouteInfo<void> {
-  const UserScoresRoute()
-      : super(UserScoresRoute.name, path: '/user-scores-screen');
+/// [_i7.UserGoalScreen]
+class UserGoalRoute extends _i12.PageRouteInfo<void> {
+  const UserGoalRoute() : super(UserGoalRoute.name, path: '/user-goal-screen');
 
-  static const String name = 'UserScoresRoute';
+  static const String name = 'UserGoalRoute';
 }
 
 /// generated route for

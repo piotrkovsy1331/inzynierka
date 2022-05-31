@@ -24,7 +24,7 @@ class SummaryDougnhutChart extends StatelessWidget {
               // Render pie chart
               PieSeries<DoughnutChartData, String>(
                   dataSource: chartData,
-                  dataLabelSettings: DataLabelSettings(isVisible: true),
+                  dataLabelSettings: const  DataLabelSettings(isVisible: true),
                   pointColorMapper: (DoughnutChartData data, _) => data.color,
                   xValueMapper: (DoughnutChartData data, _) => data.name,
                   yValueMapper: (DoughnutChartData data, _) =>

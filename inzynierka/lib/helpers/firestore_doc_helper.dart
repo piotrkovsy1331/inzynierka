@@ -32,7 +32,6 @@ class FireStoreDocHelper {
             Details(calories: 0, fat: 0, protein: 0, sugar: 0, weight: 0),
         productList: []),
   ];
-
   static final emptyUserData = UserData(
       firstName: '',
       secondName: '',

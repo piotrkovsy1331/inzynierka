@@ -5,8 +5,8 @@ import 'package:inzynierka/logics/notifiers/app_theme_notifier.dart';
 import 'package:inzynierka/models/details.dart';
 import 'package:inzynierka/models/meal_day.dart';
 
-import 'package:inzynierka/ui/home_user_screen.dart/widgets/summary_bar_chart.dart';
-import 'package:inzynierka/ui/home_user_screen.dart/widgets/summary_doughnut_chart.dart';
+import 'package:inzynierka/ui/home_user_goal_screen.dart/widgets/summary_bar_chart.dart';
+import 'package:inzynierka/ui/home_user_goal_screen.dart/widgets/summary_doughnut_chart.dart';
 import 'package:provider/provider.dart';
 
 import '../../../globals/enums/time_range.dart';
@@ -41,7 +41,7 @@ class _TabViewState extends State<TabView> {
           builder:
               (BuildContext context, AsyncSnapshot<List<MealDay>> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: Text('Dupa'));
+              return const Center(child: CircularProgressIndicator());
             }
             if (snapshot.connectionState == ConnectionState.done) {
               return ListView(
